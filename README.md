@@ -20,15 +20,14 @@ This repository contains the source code and documentation for the Recycling Web
 1. User Registration and Authentication: Users can register and authenticate themselves as waste producers or recycling stations.
 2. Waste Registration: Waste producers can register their waste materials, providing details such as type, quantity, and location.
 3. Material Requests: Recycling stations can search for and request specific types of materials from waste producers.
-4. Communication Interface: A messaging system facilitates communication between waste producers and recycling stations.
-5. Payment and Logistics: Secure payment handling and logistics management ensure the safe and efficient delivery of waste materials.
+4. Users' information: Users can modify their information, view their profiles, change their passwords, and request a password reset using e-mail.
 
 ## Getting Started
 
 To set up the project locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/recycling-website.git`
-2. Navigate to the project directory: `cd recycling-website`
+1. Clone the repository: `git clone https://github.com/OmarHassouna-PS/EcoBridge`
+2. Navigate to the project directory: `cd EcoBridge`
 3. Install the dependencies for the front-end and back-end:
    - Front-end: `cd client && npm install`
    - Back-end: `cd server && npm install`
@@ -45,8 +44,7 @@ To set up the project locally, follow these steps:
 The project follows a client-server architecture:
 
 - The `client` directory contains the front-end code, built with React.js. It handles the user interface and interactions.
-- The `server` directory contains the back-end code, implemented with Node.js and Express.js. It handles server-side logic, API endpoints, and database operations.
-- The `database` directory contains the database schema and migration scripts for PostgreSQL.
+- The `server` directory contains the back-end code, implemented with Node.js and Express.js. It handles server-side logic, API endpoints, and database operations. And `models` directory contains the database schema and migration scripts for PostgreSQL.
 
 ---
 

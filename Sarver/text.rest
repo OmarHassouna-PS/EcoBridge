@@ -1,0 +1,46 @@
+
+GET http://localhost:5000/
+
+###
+POST http://localhost:5000/station
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY29tcGFueSIsInVzZXJJZCI6MjIsImlhdCI6MTY4NzQxMzgzOSwiZXhwIjoxNjg4MDE4NjM5fQ.BsU2vkugEreYm-jxjs3F2ncwD7iq6jXTuUjcyvh8reE
+{
+  "username": "omar",
+  "phone": "0778788014",
+  "email": "omar1@gmail.com",
+  "password": "123Omar!",
+  "businessType": "omar",
+  "address": "0778788014",
+  "organizationName": "omar@gmail.com",
+  "wasteInfoType": [ "cardboard", "plastic", "metal" ],
+  "wasteInfoRange": 390
+}
+
+###
+
+DELETE   http://localhost:5000/admin/8
+Content-Type: application/json
+Authorization: Breaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjYsImlhdCI6MTY4NzM0MDM4MiwiZXhwIjoxNjg3OTQ1MTgyfQ.rX2-ZyH1DhvlqF0nP2biTVFiVw1A8TLaCS4AkHkU1MQ
+
+{
+  "username": "omar",
+  "phone": "0778788014",
+  "email": "omar1@gmail.com",
+  "password": "123Omar!",
+  "address": "0778788014"
+}
+
+###
+
+POST http://localhost:5000/logIn_admin
+Content-Type: application/json
+Authorization: Breaer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjYsImlhdCI6MTY4NzM0MDM4MiwiZXhwIjoxNjg3OTQ1MTgyfQ.rX2-ZyH1DhvlqF0nP2biTVFiVw1A8TLaCS4AkHkU1MQ
+
+{
+    "email": "omar@gmail.com",
+    "password": "123Omar!"
+}
+
+# admin eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOjYsImlhdCI6MTY4NzM0MDM4MiwiZXhwIjoxNjg3OTQ1MTgyfQ.rX2-ZyH1DhvlqF0nP2biTVFiVw1A8TLaCS4AkHkU1MQ
+# company eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY29tcGFueSIsInVzZXJJZCI6MjIsImlhdCI6MTY4NzQxMzgzOSwiZXhwIjoxNjg4MDE4NjM5fQ.BsU2vkugEreYm-jxjs3F2ncwD7iq6jXTuUjcyvh8reE

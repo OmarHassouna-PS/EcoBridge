@@ -1,0 +1,294 @@
+.main-color {
+    color: var(--main-color);
+}
+
+.bold-main-color {
+    color: var(--yellow-color);
+}
+
+.yellow-color {
+    color: var(--yellow-color);
+}
+
+.error-Message {
+    color: rgb(255, 0, 0);
+
+    font-size: 0.8rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Start Main */
+
+.form-control {
+    display: block;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 2px solid var(--border-color);
+}
+
+.form-control:focus {
+    border-color: var(--border-focus-color);
+    box-shadow: 0 0 0 0px var(--bold-yellow-color);
+}
+
+.form-signUp {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+
+.hero-text-signIn h1 {
+    font-weight: 700;
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+.hero-text-signUp h1 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.hero-card {
+    height: 120px;
+    width: 100%;
+    background-color: var(--main-color);
+    margin-top: 10px;
+}
+
+.hero-text-card {
+    font-weight: 800;
+    font-size: 40px;
+    color: var(--White-color);
+    margin: 25px 0px 0px 90px;
+    align-items: center;
+}
+
+.container-sing-in,
+.container-sing-up {
+    margin: 100px 0px;
+    align-content: center;
+    background: var(--White-color);
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.container-sing-up {
+    width: 60%;
+    height: 100%;
+}
+
+.container-sing-in {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr;
+
+}
+
+.input-field {
+    margin: 10px;
+}
+
+.text-color {
+    color: var(--main-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color);
+}
+
+.label {
+    margin-bottom: 5px;
+}
+
+.text-paragraph-color {
+    color: var(--bold-main-color);
+}
+
+.text-font {
+    font-size: 18px;
+}
+
+.button {
+    color: var(--White-color);
+    background-color: var(--main-color);
+    height: 50px;
+    transition: background-color 0.4s ease-in-out;
+    border: var(--main-color) solid var(--main-color);
+    border-radius: 0.375rem;
+}
+
+.button:hover {
+    color: var(--White-color);
+    background-color: var(--bold-main-color);
+}
+
+.line {
+    color: var(--yellow-color);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .70;
+    margin: 16px 0px;
+}
+
+.link {
+    color: var(--main-color);
+    transition: color .15s ease-in-out;
+}
+
+.link:hover {
+    cursor: pointer;
+    color: var(--yellow-green-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--yellow-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem var(--yellow-green-color);
+}
+
+.form-check-input:checked {
+    background-color: var(--yellow-color);
+    border-color: var(--yellow-green-color);
+}
+
+.password {
+    position: relative;
+}
+
+.password .eye {
+    cursor: pointer;
+    position: absolute;
+    right: 13px;
+    top: 33px;
+}
+
+.container-sing-in .password .eye {
+    right: 25px;
+    top: 34px;
+}
+
+.fas {
+    line-height: 2;
+}
+
+.eye i {
+    color: var(--bold-main-color);
+}
+
+.select .bootstrap-select .dropdown-toggle:focus {
+    border: 1px solid var(--main-color) !important;
+    outline: 5px auto var(--main-color) !important;
+    outline-offset: 0;
+}
+
+.select .bootstrap-select .dropdown-toggle {
+    border: 2px solid var(--border-color) !important;
+}
+
+.range {
+    width: 100%;
+}
+
+input[type="range"] {
+    accent-color: var(--main-color);
+}
+ 
+.custom-select .css-13cymwt-control {
+  border: solid 2px var(--border-color);
+}
+
+.custom-select .css-13cymwt-control:hover {
+  border-color: var(--main-color);
+}
+
+.custom-select .css-t3ipsp-control {
+  box-shadow: 0 0 0 1px var(--border-focus-color);
+}
+
+.custom-select .css-t3ipsp-control:hover {
+  border-color:  var(--border-focus-color);
+}
+
+/* Start Forgot Page */
+
+.hero-text-password-recovery {
+    font-size: 25px;
+    color: var(--bold-main-color);
+}
+
+.container-password-recovery {
+    margin: 100px;
+    height: 75%;
+    width: 70%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+/* End Forgot Page */
+
+@media (max-width: 769px) {
+    .hero-text-card {
+        font-size: 25px;
+        padding-left: 15px;
+        margin-left: auto;
+        margin-top: 40px;
+    }
+
+    .hero-text-forgot {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-text-card {
+        font-size: 25px;
+    }
+
+    .hero-text-signUp h1 {
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .text-font {
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width: 375px) {
+
+    .hero-text-card {
+        font-size: 15px;
+    }
+
+    .hero-text-signUp h1 {
+        font-weight: 600;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .text-font {
+        font-size: 5px;
+    }
+
+
+    .log-link {
+        margin-top: 5px;
+    }
+
+    .hero-text-password-recovery {
+        font-size: 15px;
+    }
+
+    .logo-img {
+        width: 100px;
+    }
+
+    .hero-text-signIn h1 {
+        margin-top: 70px;
+    }
+}

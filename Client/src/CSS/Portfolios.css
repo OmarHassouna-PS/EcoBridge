@@ -1,0 +1,345 @@
+
+
+:root {
+    --num: 70;
+}
+
+/* General */
+
+.text-first-color {
+    color: var(--main-color);
+}
+
+.text-second-color {
+    color: var(--yellow-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color);
+}
+
+.black-text {
+    color: var(--black-color);
+}
+
+.button {
+    color: var(--bold-White-color);
+    background-color: var(--main-color);
+    transition: background-color 0.4s ease-in-out;
+    border: var(--main-color) solid var(--main-color);
+    border-radius: 6px;
+}
+
+.button:hover {
+    color: var(--bold-White-color);
+    background-color: var(--bold-main-color);
+}
+
+.button:focus {
+    color: var(--bold-White-color);
+    background-color: var(--bold-main-color);
+}
+
+.line {
+    color: var(--yellow-color);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .70;
+    margin: 25px 0px;
+}
+
+.link {
+    color: var(--main-color);
+    transition: color .15s ease-in-out;
+}
+
+.link:hover {
+    cursor: pointer;
+    color: var(--yellow-green-color);
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+.bold-main-color {
+    color: var(--bold-main-color);
+}
+
+.yellow-color {
+    color: var(--yellow-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+.error-Message {
+    color: rgb(255, 0, 0);
+
+    font-size: 0.8rem;
+}
+
+/* End General */
+
+/* Start Form Section */
+
+.nav-link:focus {
+    color: var(--yellow-green-color);
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.img-account-profile {
+    width: 10rem;
+    height: 10rem;
+}
+
+.md-button button {
+    display: inline-block;
+    padding: 12px 0px;
+    height: 48px;
+    width: 176px;
+}
+
+.md-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-form, .font-italic {
+    color: var(--bold-main-color);
+}
+
+.waste-types {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.waste-type {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    background: var(--bold-White-color);
+    border-radius: 10px;
+    font-weight: 900;
+    color: var(--main-color);
+    font-size: 1rem;
+    border: 1px dotted var(--main-color);
+}
+
+.select .bootstrap-select .dropdown-toggle:focus {
+    border: 1px solid var(--main-color) !important;
+    outline: 5px auto var(--main-color) !important;
+    outline-offset: 0;
+}
+
+.select .bootstrap-select .dropdown-toggle {
+    border: 2px solid var(--border-color) !important;
+}
+
+.range {
+    width: 100%;
+}
+
+input[type="range"] {
+    accent-color: var(--main-color);
+}
+
+.password {
+    position: relative;
+}
+
+.security-form .password .eye {
+    cursor: pointer;
+    position: absolute;
+    right: 13px;
+    top: 33px;
+}
+
+/* End Form Section */
+
+/* Start Transaction-Evaluation-info Section*/
+
+.Trans-Eval-info .circles {
+    display: grid;
+    margin: 50px 25px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+    align-items: center;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 4px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.circle-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 1fr;
+    justify-items: center;
+    align-items: end;
+    margin: 50px 0px;
+}
+
+.circles .circle-card .percent {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.circles .circle-card .percent svg {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transform: rotate(270deg);
+}
+
+.circles .circle-card .percent svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: 5;
+    stroke: var(--border-color);
+    transform: translate(5px, 5px);
+}
+
+.circles .circle-card .percent svg circle:nth-child(2) {
+
+    stroke: var(--main-color);
+    stroke-dasharray: 440;
+    stroke-dashoffset: calc(440 - (440 * var(--num)) / 100);
+}
+
+.dot {
+    position: absolute;
+    inset: 5px;
+    z-index: 10;
+    transform: rotate(calc(3.6deg * var(--num)));
+    /* 360deg / 100 = 3.6 */
+
+    animation: animateDot 1.5s linear forwards;
+}
+
+.dot::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--yellow-color);
+
+    box-shadow: 0 0 10px var(--yellow-color), 0 0 30px var(--yellow-color);
+
+} 
+
+.number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.number h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--bold-main-color);
+    font-weight: 700;
+    font-size: 2.5em;
+}
+
+.number h2 span {
+    font-weight: 300;
+    color: var(--bold-main-color);
+    font-size: 0.5em;
+}
+
+.checked {
+    color: orange;
+}
+
+@keyframes animateDot {
+
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(calc(3.6deg * var(--num)));
+    }
+}
+
+/* End Trans-Transaction-Evaluation Section */
+
+/* Start Security Section */
+
+.password {
+    position: relative;
+}
+
+.password .eye {
+    cursor: pointer; 
+    position: absolute;
+    right: 13px;
+    top: 5px;
+}
+
+.fas {
+    line-height: 2;
+}
+
+.eye i {
+    color: var(--bold-main-color);    
+}
+
+.btn-danger-soft {
+    background-color: #f1e0e3;
+}
+
+.btn-danger-soft:hover {
+    background-color: #eca8b4;
+}
+
+.card-body {
+    color: var(--bold-main-color);
+}
+
+.delete-account-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* End Security Section */
+
+@media (max-width: 816px) {
+    .circle-card {
+        margin: 10px 0px;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .log-link {
+        margin-top: 5px;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+
+    .Trans-Eval-info .title h1 {
+        font-size: 20px;
+    }
+}
+

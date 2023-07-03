@@ -1,0 +1,312 @@
+.main-color {
+    color: var(--main-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color)
+}
+
+.yellow-color {
+    color: var(--yellow-color);
+}
+
+.black-color {
+    color: var(--black-color);
+}
+
+.line {
+    color: var(--yellow-color);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .70;
+    margin: 16px 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.button {
+    color: var(--bold-White-color);
+    background-color: var(--main-color);
+    transition: background-color 0.4s ease-in-out;
+    border: var(--main-color) solid var(--main-color);
+    border-radius: 6px;
+}
+
+.button:hover {
+    background-color: var(--bold-main-color);
+}
+
+.md-button button {
+    display: inline-block;
+    padding: 12px 0px;
+    height: 48px;
+    width: 176px;
+    color: var(--White-color);
+}
+
+.md-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Table-modal .modal-button {
+    background-color: var(--White-color);
+    color: var(--bold-main-color);
+    transition: background-color 0.5s ease-in-out;
+    border: 1px solid var(--yellow-color);
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.Table-modal .modal-button:hover {
+    color: var(--White-color);
+    background-color: var(--bold-main-color);
+}
+
+.station-image img{
+    border-radius: 50%;
+    width: 250px;
+    height: 200px;
+    object-fit:fill;
+}
+
+.confirm-line {
+    border: 5px solid var(--main-color);
+    border-radius: 0.375rem;
+    position: relative;
+    top: 7px;
+    z-index: 100;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.Delete-button {
+    width: 176px;
+    height: 48px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background: #e62222;
+}
+
+.Delete-button,
+.Delete-button span {
+    transition: 200ms;
+}
+
+.Delete-button .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+}
+
+.Delete-button .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Delete-button svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.Delete-button:hover {
+    background: #ff3636;
+}
+
+.Delete-button:hover .text {
+    color: transparent;
+}
+
+.Delete-button:hover .icon {
+    width: 175px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+.Delete-button:focus {
+    outline: none;
+}
+
+.Delete-button:active .icon svg {
+    transform: scale(0.8);
+}
+
+/* Start Add request */
+
+.container-show-request {
+    margin: 25px 0px;
+    height: 75%;
+    width: 70%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.hero-card {
+    height: 120px;
+    width: 100%;
+    background-color: var(--main-color);
+    margin-top: 10px;
+}
+
+.hero-text-card {
+    font-weight: 800;
+    font-size: 40px;
+    color: var(--White-color);
+    margin: 25px 0px 0px 90px;
+    align-items: center;
+}
+
+textarea {
+    max-height: 200px;
+}
+
+.image img {
+    width: 130px;
+    height: 130px;
+    position: relative;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+
+    color: var(--main-color) !important;
+
+}
+
+.cards .swiper-button-next,
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--main-color) !important;
+}
+
+.cards .swiper-pagination-bullet-active {
+    background: var(--yellow-color) !important;
+}
+
+.form-select {
+    cursor: pointer;
+    color: var(--bold-main-color);
+}
+
+.select select:hover option:hover {
+    background-color: var(--yellow-color);
+}
+
+.image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.gallery img {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    margin: auto;
+    margin-top: 65px;
+    max-width: 75%;
+    max-height: 75%;
+}
+
+.info {
+    font-size: 1.3rem;
+}
+
+.post-image img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 13px;
+}
+
+.post-image {
+    border-radius: 13%;
+    margin-bottom: 2px;
+}
+
+/* End Add request */
+
+@media (max-width: 768px) {
+    .hero-text-card {
+        font-size: 25px;
+        padding-left: 15px;
+        margin-left: auto;
+        margin-top: 40px;
+    }
+
+    .user-image img {
+        width: 150px;
+        height: 125px;
+    }
+
+    .container-show-request{
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-text-card {
+        font-size: 25px;
+    }
+
+    .info {
+        font-size: 1rem;
+    }
+
+    .container-show-request{
+        width: 90%;
+    }
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .hero-text-card {
+        font-size: 15px;
+    }
+}

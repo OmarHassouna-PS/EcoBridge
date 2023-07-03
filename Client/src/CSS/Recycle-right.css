@@ -1,0 +1,269 @@
+
+/* General */
+
+.text-first-color {
+    color: var(--main-color);
+}
+
+.text-second-color {
+    color: var(--yellow-color);
+}
+
+.Light-main-color {
+    color: var(--main-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color);
+}
+
+.black-text {
+    color: var(--black-color);
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+.bold-main-color {
+    color: var(--bold-main-color);
+}
+
+.yellow-color {
+    color: var(--yellow-color);
+}
+
+.line {
+    color: var(--yellow-color);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .70;
+    margin: 16px 0px;
+}
+
+/* End General */
+
+/* Start Main */
+
+.container-recycle-right {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
+}
+
+.main-recycle-right {
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 120px;
+    align-items: center;
+}
+
+.image-recycle-right img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.main-recycle-right h1 {
+    grid-column: 1 / 13;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.recycle-right-head {
+    height: 100vh;
+    grid-column: 1 / 13;
+}
+
+.main-text {
+    grid-column: 2 / 6;
+}
+
+.main-text h4 {
+    font-size: 44px;
+    line-height: 48px;
+}
+
+.main-image {
+    grid-column: 7 /12;
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+/* End Main */
+
+/* Start Rules  */
+
+.rules,
+.step {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin-top: 130px;
+}
+
+.rules {
+    grid-row: 2;
+}
+
+.rules h2, .step h2 {
+    grid-row: 1;
+    grid-column: 2 / 13;
+}
+
+.rules p, .step p {
+    grid-row: 2;
+    grid-column: 2 / 10;
+}
+
+.rules-cards {
+    grid-column: 2 / 12;
+    display: grid;
+    margin-top: 80px;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: var(--White-color);
+    gap: 0px 5%;
+}
+
+.rules-image img {
+    width: 100%;
+    height: 254px;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.rules-card {
+    display: grid;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 4px 25px rgba(0, 0, 0, 0.2);
+    grid-template-rows: 263px 1fr;
+    grid-template-columns: 1fr;
+    justify-content: space-around;
+    align-items: start;
+    border-radius: 20px;
+}
+
+.rules-card h4 {
+    padding: 15px;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+/* End Rules  */
+
+/* Start Step  */
+
+.step {
+    grid-row: 3;
+    margin-bottom: 80px;
+}
+
+.step-cards {
+    grid-column: 2 / 12;
+    display: grid;
+    margin-top: 80px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(max-content, 250px));
+    background-color: var(--White-color);
+    gap: 30px;
+}
+
+.step-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 4px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.step-card .hr {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+.step-card p, .step-card h3 {
+    padding: 10px 10px 0px 10px;
+}
+ 
+/* End Step */
+
+@media (max-width: 990px) {
+    .rules-image img {
+        height: 175px;
+    }
+
+    .rules-card {
+        grid-template-rows: 185px 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .main-text h4 {
+        font-size: 25px;
+        line-height: 48px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .rules-image img {
+        height: 100px;
+    }
+
+    .rules-card {
+        grid-template-rows: 105px 1fr;
+    }
+
+    .step-cards {
+        grid-template-rows: repeat(auto-fit, minmax(max-content, 300px));
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .rules-image img {
+        width: 100%;
+        height: 254px;
+    }
+
+    .rules-card {
+        grid-template-rows: 0fr 100px;
+        margin-top: 25px;
+        grid-column: 1 / 7;
+    }
+
+    .main-text {
+        grid-column: 2 / 12;
+    }
+
+    .main-image {
+        grid-column: 2 /12;
+    }
+
+    .rules-cards {
+        margin-top: 0px;
+    }
+
+    .step-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 375px) {
+    .main-text h4 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .main-text p {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,28 @@
+
+.text-first-color {
+    color: var(--main-color);
+}
+
+.text-second-color {
+    color: var(--yellow-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color);
+}
+
+.md-button button {
+    display: inline-block;
+    padding: 12px 0px;
+    height: 48px;
+    width: 176px;
+    color: var(--White-color);
+}
+
+.button {
+    color: var(--bold-White-color);
+    background-color: var(--main-color);
+    transition: background-color 0.4s ease-in-out;
+    border: var(--main-color) solid var(--main-color);
+    border-radius: 6px;
+}

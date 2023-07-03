@@ -1,0 +1,456 @@
+
+/* General */
+
+.text-first-color {
+    color: var(--main-color);
+}
+
+.text-second-color {
+    color: var(--yellow-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color);
+}
+
+.black-text {
+    color: var(--black-color);
+}
+
+.text-font {
+    font-size: 18px;
+}
+
+.button {
+    color: var(--bold-White-color);
+    background-color: var(--main-color);
+    height: 50px;
+    transition: background-color 0.4s ease-in-out;
+    border: var(--main-color) solid var(--main-color);
+    border-radius: 6px;
+}
+
+.button:hover {
+    color: var(--bold-White-color);
+    background-color: var(--bold-main-color);
+}
+
+.line {
+    color: var(--yellow-color);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .70;
+    margin: 16px 0px;
+}
+
+.link {
+    color: var(--main-color);
+    transition: color .15s ease-in-out;
+}
+
+.link:hover {
+    cursor: pointer;
+    color: var(--yellow-green-color);
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+.bold-main-color {
+    color: var(--bold-main-color);
+}
+
+.yellow-color {
+    color: var(--yellow-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* End General */
+
+/* Start Main */
+
+/* Start index-Hero Section */
+
+.index-hero {
+    height: 700px;
+    background-image: url(../../public/Images/Hero-img.jpg);
+    border-radius: 20px;
+    margin: 10px 10px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr;
+    justify-content: center;
+}
+
+.index-hero-text {
+    grid-column: 2 / 10;
+    align-self: flex-end;
+}
+
+.lg-button {
+    grid-column: 2 / 4;
+}
+
+.lg-button a {
+    height: 57px;
+    width: 160px;
+    font-size: 30px;
+    display: block;
+    padding: 6px;
+    background-color: rgba(28, 130, 0, 0.26);
+}
+
+.lg-button a,
+.md-button a:nth-child(2) {
+    border: 1px solid var(--yellow-color);
+    border-radius: 6px;
+    font-weight: bold;
+    color: var(--White-color);
+    transition: background-color 0.4s ease-in-out;
+}
+
+.lg-button a:hover,
+.md-button a:nth-child(2):hover {
+    color: var(--White-color);
+    background-color: var(--bold-main-color)
+}
+
+.md-button a {
+    display: inline-block;
+    padding: 12px;
+    height: 48px;
+    width: 176px;
+}
+
+
+.md-button a:nth-child(2) {
+    background-color: var(--White-color);
+    color: var(--bold-main-color);
+    transition: background-color 0.5s ease-in-out;
+}
+
+.index-hero-text h1 {
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 64px;
+    color: var(--White-color);
+    border-radius: 20px;
+    padding: 10px;
+    backdrop-filter: blur(5px) brightness(100%);
+}
+
+.get-started-card {
+    align-self: flex-end;
+    position: relative;
+    top: 80px;
+    margin: 0px 5%;
+    grid-column: 1 / 11;
+}
+
+.index-hero-card {
+    margin: 25px 0px;
+    align-content: center;
+    background: var(--White-color);
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.get-started-card .md-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.get-started-card .md-button .first-btn {
+    margin-right: 15px;
+}
+
+.index-hero-card-text h3 {
+    font-weight: bold;
+    color: var(--bold-main-color);
+}
+
+/* End index-Hero Section */
+
+/* Start Achievement Section */
+
+.index-achievements{
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+}
+
+.index-achievements-card {
+    margin: 120px 0px 80px 0px;
+    align-content: center;
+    background-color: var(--White-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 5%;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.index-achievements-field {
+    height: 200px;
+    padding-top: 45px;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.index-achievements-field h4,
+.our-vision-field h4 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+/* End Achievement Section */
+
+/* Start our-vision Section */
+
+.our-vision {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    justify-items: center;
+}
+
+.our-vision-card {
+    align-content: center;
+    background-color: var(--White-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px 5%;
+}
+
+.our-vision-image {
+    height: 254px;
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+.our-vision-field {
+    display: grid;
+    grid-template-rows: 263px 1fr;
+    justify-content: space-around;
+    align-items: start;
+}
+
+/* End our-vision Section */
+
+/* Start recycle-right Section */
+
+.recycle-right {
+    margin-bottom: 150px;
+}
+
+.recycle-right-card {
+    margin-top: 150px;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    align-items: center;
+}
+
+.recycle-right-image {
+    margin-left: 10%;
+    grid-column: 1 / 6;
+}
+
+.recycle-right-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.recycle-right-field {
+    grid-column: 7 / 10;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+/* End recycle-right Section */
+
+@media (max-width: 1100px) {
+    .recycle-right-field {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 990px) {
+    .our-vision-image {
+        height: 175px;
+    }
+
+    .our-vision-field {
+        grid-template-rows: 185px 1fr;
+    }
+
+    .recycle-right-field {
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width: 769px) {
+    .lg-button {
+        grid-column: 2 / 5;
+    }
+
+    .index-hero-card {
+        flex-direction: column;
+    }
+
+    .index-achievements-field h4 {
+        font-size: 14px;
+    }
+
+
+    .recycle-right-card {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: auto 1fr;
+    }
+
+    .recycle-right-image {
+        margin: 0;
+        grid-column: 2 / 6;
+        padding: 0% 5%;
+    }
+
+    .recycle-right-field {
+        grid-column: 2 / 6;
+        padding: 0px 24px;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .index-hero-text h1 {
+        font-size: 25px;
+        line-height: 40px;
+    }
+
+
+    .index-achievements-field h4 {
+        font-size: 10px;
+    }
+
+    .our-vision-image {
+        height: 100px;
+    }
+
+    .our-vision-field {
+        grid-template-rows: 105px 1fr;
+    }
+
+    .our-vision-field h4 {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    .get-started-card .md-button {
+        flex-direction: column;
+    }
+
+    .get-started-card .md-button .first-btn {
+        margin-bottom: 15px;
+        margin-right: 0px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .index-achievements-card {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 0px 5%;
+        height: 488px;
+    }
+    
+    .index-achievements-field h4 {
+        font-size: 16px;
+    }
+    
+    .index-achievements-field {
+        height: 100px;
+        padding-top: 0;
+    }
+    
+    .our-vision-card {
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 0px 5%;
+    }
+
+    .our-vision-field {
+        grid-template-rows: 0fr 100px;
+        gap: 15px;
+    }
+
+    .our-vision-image {
+        width: auto;
+        height: auto;
+    }
+
+    .our-vision-field h4 {
+        font-size: 16px;
+    }
+
+    .recycle-right-field {
+        grid-column: 1 / 7;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .text-font {
+        font-size: 16px;
+    }
+
+    .log-link {
+        margin-top: 5px;
+    }
+
+    .logo-img {
+        width: 100px;
+    }
+
+
+    .index-hero-card-text h3,
+    .index-hero-card-text h4 {
+        font-size: 15px;
+    }
+
+    .index-hero-card {
+        height: 260px;
+    }
+
+    .index-hero-text h1 {
+        font-size: 20px;
+    }
+
+    .md-button a:first-child {
+        margin-right: 20px;
+    }
+
+    .our-vision-field {
+        gap: 40px;
+    }
+
+}

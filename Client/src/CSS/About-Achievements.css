@@ -1,0 +1,175 @@
+
+
+/* General */
+
+.text-first-color {
+    color: var(--main-color);
+}
+
+.text-second-color {
+    color: var(--yellow-color);
+}
+
+.Light-main-color {
+    color: var(--main-color);
+}
+
+.text-bold-color {
+    color: var(--bold-main-color);
+}
+
+.black-text {
+    color: var(--black-color);
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+.bold-main-color {
+    color: var(--bold-main-color);
+}
+
+.yellow-color {
+    color: var(--yellow-color);
+}
+
+.line {
+    color: var(--yellow-color);
+    border: 0;
+    border-top: 2px solid;
+    opacity: .70;
+    margin: 16px 0px;
+}
+
+/* End General */
+
+.about-us, .achievements {
+    display: grid;
+    margin-bottom: 50px;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: 120px;
+    justify-items: center;
+    align-items:center;
+}
+
+.about-us h1, .achievements h1 {
+    grid-column: 1 / 14;
+    white-space: nowrap;
+    align-self: center;
+
+}
+
+.image-about-us, .image-achievements {
+    margin-left: 10%;
+    grid-column: 1 / 7;
+}
+
+.image-about-us img, .image-achievements img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.about-us-field {
+    grid-column: 8 / 14;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.about-us-field p {
+    color: var(--bold-main-color);
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+.achievements-card {
+    grid-column: 8 / 13;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.achievements-field  {
+    margin-bottom: 20px;
+}
+
+.achievements-field h3, .achievements-field h4 {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.achievements-field h4 {
+    color: var(--bold-main-color);
+    line-height: 37px;
+}
+
+@media (max-width: 990px) {
+    .about-us-field p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 769px) {
+
+    .about-us {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: auto 1fr;
+    }
+
+    .image-about-us {
+        margin: 0;
+        grid-column: 2 / 6;
+        padding: 0% 5%;
+    }
+
+    .about-us-field {
+        grid-column: 1 / 7;
+        font-size: 15px;
+        padding: 16px 24px;
+    }
+
+    .about-us {
+        margin-bottom: 50px;
+    }
+
+    .achievements-field h3, .achievements-field h4 {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+    .achievements-card {
+        grid-column: 2 / 13;
+    }
+    
+    .image-achievements {
+        margin-left: 10%;
+        grid-column: 1 / 13;
+    }
+
+    .achievements-field {
+        margin-bottom: 60px;
+    }
+
+    .about-us h1, .achievements h1 {
+        margin: 40px 0px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .about-us-field {
+        grid-column: 1 / 7;
+    }
+
+
+    .about-us-field p {
+        font-size: 10px;
+    }
+
+    .achievements-field {
+        margin: 10px;
+    }
+
+}

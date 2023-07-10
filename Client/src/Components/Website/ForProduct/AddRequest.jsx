@@ -12,6 +12,11 @@ import { useParams } from 'react-router-dom';
 
 
 export default function AddRequest() {
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const values = useContext(Context);
   const cardId = useParams('id');
   const fileRef = useRef();

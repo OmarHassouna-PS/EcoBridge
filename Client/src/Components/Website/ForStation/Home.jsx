@@ -7,6 +7,9 @@ import staticImage from './../../../Images/static.jpg';
 import SliderPost from "../util/SliderPost";
 
 export default function Home() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const { loading: requestLoading, data: requestData, error: requestError } = useFetch('/getAllRequests');
     const [requests, setRequests] = useState();
@@ -14,8 +17,8 @@ export default function Home() {
     useEffect(() => {
         handleRequests();
         console.log(requestLoading
-            ,requestData
-            ,requestError)
+            , requestData
+            , requestError)
     }, [requestData])
 
     function handleRequests() {

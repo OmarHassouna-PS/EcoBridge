@@ -1,134 +1,81 @@
 import React, { useContext, useEffect, useState } from 'react'
-import api from '../../../AxiosConfig/contacts';
 import { Context } from '../../../Context/AuthContext';
-import { Link } from 'react-router-dom';
 import Unauthorized from '../General/Unauthorized';
-import Loader from '../General/Loader';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import ReceivedRequests from './ReceivedRequests';
+import RequestSentHistory from '../General/RequestSentHistory';
+import InterestedRequests from './InterestedRequests'
 
 function MovementsHistory() {
 
-    const values = useContext(Context);
-
-    function notify(toastMessage, toastType) {
-        toast(toastMessage, {
-            type: toastType
-        })
-    };
-
-    const [movements, setMovement] = useState();
-
     useEffect(() => {
-        getMovements()
-    }, [values])
+        window.scrollTo(0, 0);
+      }, []);
+      
+    const values = useContext(Context);
+    const [choosePage, setChoosePage] = useState('Received requests');
 
-    async function getMovements() {
-        if (!values) return;
-
-        try {
-            const resMovement = await api.get(`/company_movement`);
-
-            setMovement(resMovement.data);
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function handleDelete(MovementId) {
-
-        try {
-            const resMovement = await api.delete(`/company_movement/${MovementId}`);
-
-            notify('The submission has been successfully deleted', 'success');
-            getMovements();
-        } catch (error) {
-            console.error(error);
-
-            notify('An error occurred, please try again later', 'success');
-        }
-    }
-
-    if (!movements) {
-        return <Loader />
-    }
 
     if (values.UserInfo?.role !== 'company') {
         return <Unauthorized />
+    }
+
+    function handleChoosePage(pageName) {
+        setChoosePage(pageName);
     }
 
 
     return (
 
         <>
-            <ToastContainer />
             <h1 className="text-first-color fw-bold text-center px-2 my-5">
                 Movements <span className="text-second-color">History</span>
             </h1>
+            <div className="d-flex justify-content-center mt-4 gap-3">
+                <button onClick={() => handleChoosePage('Received requests')} className="btn btn-success btn-sm mr-3">
+                    <span className="mr-2">Received requests </span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        className="bi bi-ui-checks"
+                        viewBox="0 0 16 16">
+                        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </button>
+                <button onClick={() => handleChoosePage('Interested requests')}
+                    className="btn btn-success btn-sm">
+                    <span className="mr-2">Interested requests </span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        className="bi bi-ui-checks"
+                        viewBox="0 0 16 16">
+                        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </button>
+                <button onClick={() => handleChoosePage('Requests sent')}
+
+                    className="btn btn-success btn-sm">
+                    <span className="mr-2">Requests sent </span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        className="bi bi-ui-checks"
+                        viewBox="0 0 16 16">
+                        <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </button>
+            </div>
             <div className="container px-0" style={{ marginBottom: '10%' }}>
                 <div className="mt-4 shadow border rounded-lg overflow-auto" style={{ height: '400px', overflowY: 'scroll' }}>
-                    <table className="table table-sm table-responsive">
-                        <thead className="bg-light text-black fs-lg fw-medium border-bottom">
-
-                            <tr>
-                                <th className="py-2 px-3">ID movement</th>
-                                <th className="py-2 px-3">Request</th>
-                                <th className="py-2 px-3">Station</th>
-                                <th className="py-2 px-3">Date</th>
-                                <th className="py-2 px-3">Condition</th>
-                                <th className="py-2 px-3">Continuation in your request</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-gray-600">
-                            {movements?.map((movement) => (
-                                <tr key={movement.id}>
-                                    <td className="px-3 py-2">{movement.id}</td>
-                                    <td className="px-3 py-2">
-                                        <Link to={`/view-request/${movement.request_id}`} className="btn btn-success">
-                                            Show request
-                                        </Link>
-                                    </td>
-                                    <td className="px-3 py-2">
-                                        <Link to={`/view-station/${movement.station_id}`} className="btn btn-success">
-                                            Show station
-                                        </Link>
-                                    </td>
-                                    <td className="px-3 py-2">{movement.date.split('T')[0]}</td>
-                                    <td className="px-3 py-2">
-                                        <span style={{ color: movement.condition ? '#198754' : '#d4e23b', fontSize: '1rem' }}>
-                                            {movement.condition ? 'acceptable' : "pending"}
-                                        </span>
-                                    </td>
-
-                                    {movement.condition ?
-                                        <td className="py-2 px-3">
-                                            <Link to={`/send-capture-request/${movement.id}`} className="btn btn-outline-success">
-                                                Continue
-                                            </Link>
-                                        </td>
-                                        :
-                                        <td className="py-2 px-3">
-                                            ...
-                                        </td>
-                                    }
-
-                                    <td className="py-2 px-3">
-
-                                        <button
-                                            onClick={() => handleDelete(movement.id)}
-                                            className="btn btn-danger"
-                                            style={{ padding: '0.35rem 1.2rem', fontSize: '1rem' }}
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    {choosePage === 'Received requests' && <ReceivedRequests />}
+                    {choosePage === 'Requests sent' && <RequestSentHistory />}
+                    {choosePage === 'Interested requests' && <InterestedRequests />}
                 </div>
             </div>
         </>

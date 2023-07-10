@@ -3,8 +3,12 @@ import Unauthorized from '../General/Unauthorized';
 import { Context } from '../../../Context/AuthContext';
 import ReceivedRequests from './ReceivedRequests';
 import InterestedRequests from './InterestedRequests';
+import RequestSentHistory from './../General/RequestSentHistory';
 
 function MovementsHistory() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const values = useContext(Context);
 
     const [choosePage, setChoosePage] = useState('Received requests');
@@ -69,7 +73,7 @@ function MovementsHistory() {
                 <div className="mt-4 shadow border rounded-lg overflow-auto" style={{ height: '400px', overflowY: 'scroll' }}>
                     {choosePage === 'Received requests' && <ReceivedRequests />}
                     {choosePage === 'Interested requests' && <InterestedRequests />}
-                    {/* {choosePage === 'Requests sent' && <ReceivedRequests />} */}
+                    {choosePage === 'Requests sent' && <RequestSentHistory />}
                 </div>
             </div>
         </>

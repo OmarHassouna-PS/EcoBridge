@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './../../../CSS/Portfolios.css'
 
 export default function StationPortfolio() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
     return (
         <>
             <main>

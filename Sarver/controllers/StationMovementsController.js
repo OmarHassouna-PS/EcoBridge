@@ -101,6 +101,25 @@ const deleteMovement = async (req, res) => {
     );
 };
 
+const rejectMovement = async (req, res) => {
+
+    const movement_id = req.params.id;
+
+    db.query(queries.rejectCompanyMovements,
+        [
+            true,
+            movement_id,
+            req.user.station_id,
+        ],
+        (error, results) => {
+            if (error) {
+                return res.status(400).json(error);
+            }
+            res.status(200).json({ message: `The request was successfully rejected` });
+        }
+    );
+};
+
 const getMovementsCompanyForStation = async (req, res) => {
 
     const station = req.user;
@@ -138,5 +157,6 @@ module.exports = {
     updateMovement,
     deleteMovement,
     getMovementsCompanyForStation,
-    acceptMovement
+    acceptMovement,
+    rejectMovement,
 }

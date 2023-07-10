@@ -7,6 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ReceivedRequests() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const values = useContext(Context);
 
     function notify(toastMessage, toastType) {
@@ -14,7 +17,7 @@ function ReceivedRequests() {
             type: toastType
         })
     };
-    
+
     const [movements, setMovement] = useState();
 
     useEffect(() => {
@@ -45,6 +48,20 @@ function ReceivedRequests() {
         }
     }
 
+    async function handleReject(MovementId) {
+
+        try {
+            const resMovement = await api.put(`/reject_movement/${MovementId}`);
+
+            notify('The request was successfully rejected', 'success');
+            getMovements();
+        } catch (error) {
+            console.error(error);
+
+            notify('An error occurred, please try again later', 'warning');
+        }
+    }
+
     if (!movements) {
         return <Loader />
     }
@@ -58,6 +75,7 @@ function ReceivedRequests() {
                         <th className="py-2 px-3">Request</th>
                         <th className="py-2 px-3">Date</th>
                         <th className="py-2 px-3">Acceptance of requests</th>
+                        <th className="py-2 px-3">Reject</th>
                     </tr>
                 </thead>
                 <tbody className="text-gray-600">
@@ -81,6 +99,20 @@ function ReceivedRequests() {
                                 >
                                     {!movement.condition ? 'Accept' : 'Accepted'}
                                 </button>
+                            </td>
+
+                            <td className="py-2 px-3">
+                                {!movement.condition ?
+                                    <button
+                                        onClick={() => handleReject(movement.id)}
+                                        className="btn btn-danger"
+                                        style={{ padding: '0.35rem 1.2rem', fontSize: '1rem' }}
+                                    >
+                                        Reject
+                                    </button>
+                                    :
+                                    <>...</>
+                                }
                             </td>
 
                         </tr>

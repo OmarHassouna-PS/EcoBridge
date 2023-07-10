@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../../CSS/Contact.css'
 
 export default function Contact() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <>
             <main>

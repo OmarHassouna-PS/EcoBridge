@@ -12,6 +12,7 @@ const RequestRoutes = require('./routes/RequestRoutes');
 const CompanyMovementsRoutes = require('./routes/CompanyMovementsRoutes');
 const StationMovementsRoutes = require('./routes/StationMovementsRoutes');
 const DashBoardRoutes = require('./routes/DashBoardRoutes');
+const CaptureRequestsRoutes = require('./routes/CaptureRequestsRoutes');
 
 const PORT = process.env.SERVER_PORT;
 
@@ -30,6 +31,7 @@ app.use(RequestRoutes);
 app.use(CompanyMovementsRoutes);
 app.use(StationMovementsRoutes);
 app.use(DashBoardRoutes);
+app.use(CaptureRequestsRoutes);
 
 app.get("/", (req, res) => {
     res.send("Welcome");

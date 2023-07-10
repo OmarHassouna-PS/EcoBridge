@@ -46,6 +46,20 @@ const getMovements = async (req, res) => {
     );
 };
 
+const getInterestedRequestsFromStations = async (req, res) => {
+
+    const company = req.user;
+
+    db.query(queries.getInterestedRequestsFromStations, [company.company_id],
+        (error, results) => {
+            if (error) {
+                return res.status(400).json(error);
+            }
+            res.status(200).json(results.rows);
+        }
+    );
+};
+
 const getMovementById = async (req, res) => {
 
     const id = req.params.id;
@@ -100,10 +114,31 @@ const deleteMovement = async (req, res) => {
     );
 };
 
+const rejectStationInterested = async (req, res) => {
+
+    const id = req.params.id;
+
+    db.query(queries.rejectStationInterested,
+        [
+            true,
+            id,
+            req.user.company_id,
+        ],
+        (error, results) => {
+            if (error) {
+                return res.status(400).json(error);
+            }
+            res.status(200).json({ message: `The animation has been updated successfully` });
+        }
+    );
+};
+
 module.exports = {
     addMovement,
     getMovements,
     getMovementById,
     updateMovement,
     deleteMovement,
+    getInterestedRequestsFromStations,
+    rejectStationInterested
 }

@@ -11,6 +11,9 @@ import { Context } from '../../../Context/AuthContext';
 import TableModal from '../util/TableModal'
 
 export default function ShowRequest() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const values = useContext(Context);
 
     const { loading, data, error } = useFetch('/station');

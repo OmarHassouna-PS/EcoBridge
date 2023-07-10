@@ -12,7 +12,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ViewPost() {
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     function notify(toastMessage, toastType) {
         toast(toastMessage, {
             type: toastType

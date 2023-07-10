@@ -15,8 +15,4 @@ router.put("/change_company_password", ProtectionToken, authPage(['company']), C
 
 router.delete("/company", ProtectionToken, authPage(['company']), Controller.deleteCompany);
 
-router.get("/capture_request/:movementId", ProtectionToken, authPage(['company']), Controller.getCaptureRequest);
-router.post("/capture_request", ProtectionToken, authPage(['company']), Controller.addCaptureRequest);
-
-
 module.exports = router;

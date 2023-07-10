@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function AddRequest() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const values = useContext(Context);
 
     const [state, forceUpdate] = useReducer((x) => x + 1, 0);

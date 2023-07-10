@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import './CSS/App.css'
 
@@ -25,7 +25,7 @@ const Portfolio = lazy(() => import('./Components/Users/Portfolio'))
 const SendCaptureRequest = lazy(() => import('./Components/Website/ForProduct/SendCaptureRequest'))
 const ShowRequests = lazy(() => import('./Components/Website/General/ShowRequests'))
 const ShowStation = lazy(() => import('./Components/Website/General/ShowStations'))
-const StationPortfolioForProduct = lazy(() => import('./Components/Website/ForProduct/StationPortfolio'))
+const ShowPortfolio = lazy(() => import('./Components/Website/General/ShowPortfolio'))
 const CompanyHistory = lazy(() => import('./Components/Website/ForProduct/MovementsHistory'))
 
 
@@ -47,7 +47,6 @@ function App() {
   return (
     <BrowserRouter>
       <AuthContext>
-        <Nav />
         <Routes>
           <Route path='/' element={<Header />}>
             <Route index element={<Index />} />
@@ -66,7 +65,7 @@ function App() {
             <Route path='/edit-request/:id' element={<AddRequest />} />
             <Route path='/show-requests' element={<ShowRequests />} />
             <Route path='/show-stations' element={<ShowStation />} />
-            <Route path='/station-portfolio-for-product' element={<StationPortfolioForProduct />} />
+            <Route path='/station-portfolio-for-product' element={<ShowPortfolio />} />
             <Route path='/send-capture-request/:id' element={<SendCaptureRequest />} />
 
             <Route path='/home-for-station' element={<HomeForStation />} />
@@ -93,71 +92,47 @@ function App() {
 
 export default App;
 
-function Nav() {
-  return (
-    <>
-      <nav className='d-flex' >
-        <ul className='' style={{ listStyle: "none" }}>
-          <li className='mt-2'><Link to={'/'}>index</Link></li>
-          <li className='mt-2'><Link to={'/about'}>About</Link></li>
-          <li className='mt-2'><Link to={'/contact'}>Contact</Link></li>
-          <li className='mt-2'><Link to={'/achievements'}>Achievements</Link></li>
-          <li className='mt-2'><Link to={'/loader'}>Loader</Link></li>
-          <li className='mt-2'><Link to={'/confirmation'}>Confirmation</Link></li>
-          <li className='mt-2'><Link to={'/recycle-right'}>RecycleRight</Link></li>
-          <li className='mt-2'><Link to={'/view-post'}>ViewPost</Link></li>
-        </ul>
+// function Nav() {
+//   return (
+//     <>
+//       <nav className='d-flex' >
+//         <ul className='' style={{ listStyle: "none" }}>
+//           <li className='mt-2'><Link to={'/'}>index</Link></li>
+//           <li className='mt-2'><Link to={'/about'}>About</Link></li>
+//           <li className='mt-2'><Link to={'/contact'}>Contact</Link></li>
+//           <li className='mt-2'><Link to={'/achievements'}>Achievements</Link></li>
+//           <li className='mt-2'><Link to={'/loader'}>Loader</Link></li>
+//           <li className='mt-2'><Link to={'/confirmation'}>Confirmation</Link></li>
+//           <li className='mt-2'><Link to={'/recycle-right'}>RecycleRight</Link></li>
+//           <li className='mt-2'><Link to={'/view-post'}>ViewPost</Link></li>
+//         </ul>
 
-        <ul style={{ listStyle: "none" }}>
-          <p>for product</p>
-          <li className='mt-2'><Link to={'/home-for-product'}>HomeForProduct</Link></li>
-          <li className='mt-2'><Link to={'/add-request'}>AddRequest</Link></li>
-          <li className='mt-2'><Link to={'/send-capture-request'}>SendCaptureRequest</Link></li>
-          <li className='mt-2'><Link to={'/show-requests'}>ShowRequests</Link></li>
-          <li className='mt-2'><Link to={'/station-portfolio-for-product'}>StationPortfolioForProduct</Link></li>
-        </ul>
+//         <ul style={{ listStyle: "none" }}>
+//           <p>for product</p>
+//           <li className='mt-2'><Link to={'/home-for-product'}>HomeForProduct</Link></li>
+//           <li className='mt-2'><Link to={'/add-request'}>AddRequest</Link></li>
+//           <li className='mt-2'><Link to={'/send-capture-request'}>SendCaptureRequest</Link></li>
+//           <li className='mt-2'><Link to={'/show-requests'}>ShowRequests</Link></li>
+//           <li className='mt-2'><Link to={'/station-portfolio-for-product'}>StationPortfolioForProduct</Link></li>
+//         </ul>
 
-        <ul style={{ listStyle: "none" }}>
-          <p>for station</p>
-          <li className='mt-2'><Link to={'/home-for-station'}>HomeForStation</Link></li>
-          <li className='mt-2'><Link to={'/product-portfolio-for-station'}>ProductPortfolioForStation</Link></li>
-        </ul>
-        <ul style={{ listStyle: "none" }}>
-          <p>Users</p>
-          <li className='mt-2'><Link to={'/portfolio'}>Portfolio</Link></li>
-          <li className='mt-2'><Link to={'/security'}>Security</Link></li>
-          <li className='mt-2'><Link to={'/password-recovery'}>PasswordRecovery</Link></li>
-          <li className='mt-2'><Link to={'/signIn'}>SignIn</Link></li>
-          <li className='mt-2'><Link to={'/signUp'}>SignUp</Link></li>
-        </ul>
-      </nav>
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
-    </>
-  )
-}
-
-// function handleSliderImage(e) {
-//   const files = Array.from(e.target.files);
-//   setArrayimages((prevArray) => [...files]);
-// }
-
-// function deleteImage(index) {
-//   setArrayimages((prevArray) => {
-//     const newArray = [...prevArray];
-//     newArray.splice(index, 1);
-//     return newArray;
-//   });
-// }
-
-// function createElements() {
-//   return arrayimages.map((image, index) => (
-//     <div className="swiper-slide" key={index}>
-//       <div className="image">
-//         <img src={URL.createObjectURL(image)} alt="image" />
-//         <span onClick={() => deleteImage(index)}>&times;</span>
-//       </div>
-//     </div>
-//   ));
+//         <ul style={{ listStyle: "none" }}>
+//           <p>for station</p>
+//           <li className='mt-2'><Link to={'/home-for-station'}>HomeForStation</Link></li>
+//           <li className='mt-2'><Link to={'/product-portfolio-for-station'}>ProductPortfolioForStation</Link></li>
+//         </ul>
+//         <ul style={{ listStyle: "none" }}>
+//           <p>Users</p>
+//           <li className='mt-2'><Link to={'/portfolio'}>Portfolio</Link></li>
+//           <li className='mt-2'><Link to={'/security'}>Security</Link></li>
+//           <li className='mt-2'><Link to={'/password-recovery'}>PasswordRecovery</Link></li>
+//           <li className='mt-2'><Link to={'/signIn'}>SignIn</Link></li>
+//           <li className='mt-2'><Link to={'/signUp'}>SignUp</Link></li>
+//         </ul>
+//       </nav>
+//       <Suspense fallback={<Loader />}>
+//         <Outlet />
+//       </Suspense>
+//     </>
+//   )
 // }

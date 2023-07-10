@@ -14,5 +14,8 @@ router.put("/company_movement", ProtectionToken, authPage(['company']), Controll
 
 router.delete("/company_movement/:id", ProtectionToken, authPage(['company']), Controller.deleteMovement);
 
+router.get("/station_movement_for_company", ProtectionToken, authPage(['company']), Controller.getInterestedRequestsFromStations);
+
+router.delete("/reject_station_interested/:id", ProtectionToken, authPage(['company']), Controller.rejectStationInterested);
 
 module.exports = router;

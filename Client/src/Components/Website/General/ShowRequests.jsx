@@ -11,6 +11,9 @@ import staticImage from './../../../Images/static.jpg'
 import { Context } from '../../../Context/AuthContext';
 
 export default function ShowRequest() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const values = useContext(Context);
 
     const { loading, data, error } = useFetch(`/${values.UserInfo.role === 'company' ? 'request' : 'getAllRequests'}`);

@@ -9,9 +9,14 @@ import Unauthorized from './../Website/General/Unauthorized';
 
 export default function PasswordRecover() {
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+      
     const values = useContext(Context);
 
     const { token } = useParams();
+    
 
     const [passwordShowNew, setPasswordShowNew] = useState(true);
     const [passwordShowConform, setPasswordShowConform] = useState(true);

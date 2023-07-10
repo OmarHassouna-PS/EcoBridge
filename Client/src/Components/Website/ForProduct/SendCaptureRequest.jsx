@@ -9,11 +9,13 @@ import Unauthorized from './../../Website/General/Unauthorized';
 import Loader from './../../Website/General/Loader';
 import Alert from '../util/Alert';
 
-// Check if request valid in this user
-// Collect data and validation the fields
-
 export default function SendCaptureRequest() {
 
+    
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
     function notify(toastMessage, toastType) {
         toast(toastMessage, {
             type: toastType
@@ -23,7 +25,6 @@ export default function SendCaptureRequest() {
     const values = useContext(Context);
     const movementId = useParams('id')
     const navigate = useNavigate()
-    const [state, forceUpdate] = useReducer((x) => x + 1, 0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -57,7 +58,7 @@ export default function SendCaptureRequest() {
         try {
             setLoading(true);
 
-            const res = await api.get(`/capture_request/${movementId.id}`);
+            const res = await api.get(`/details_capture_request_process/${movementId.id}`);
             setRequestInfo(res.data)
 
             setLoading(false)
@@ -115,15 +116,12 @@ export default function SendCaptureRequest() {
             formIsValid = false;
             newErrors.payment_method = 'Payment method is required';
         }
-        console.log(captureRequestInfo)
 
         if (formIsValid) {
             try {
                 setLoading(true);
 
                 const res = await api.post(`/capture_request`, captureRequestInfo);
-                console.log(res.data)
-
                 notify('The capture request has been sent successfully', 'success');
                 setLoading(false);
 

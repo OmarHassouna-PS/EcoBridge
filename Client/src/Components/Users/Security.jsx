@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './../../CSS/Portfolios.css'
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../AxiosConfig/contacts';
@@ -16,6 +16,10 @@ import Unauthorized from '../Website/General/Unauthorized';
 const patternPassword = /^(?=.*[A-Z]?)(?=.*?[0-9])(?=.*?[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,.?]).{8,}$/;
 
 export default function Securely() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     const values = useContext(Context);
     const navigate = useNavigate();

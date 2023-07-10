@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../../CSS/About-Achievements.css'
 
 export default function About() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <>
             <main>

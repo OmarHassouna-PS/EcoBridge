@@ -33,7 +33,6 @@ const addCompany = `INSERT INTO company (
 
   ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *`;
 
-
 // Stations
 
 const getStationByEmail = 'SELECT * FROM station WHERE email = $1 AND is_delete = false AND active = true';
@@ -121,17 +120,19 @@ additional_info= $6, quantity= $7 WHERE requests_id = $8 AND company_id = $9`;
 
 // Movements
 
-  // * Company
+// * Company
 
 const addMovementCompany = `INSERT INTO company_movements (condition, date, request_id, station_id, company_id) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
 
-const getMovementCompany = `SELECT * FROM company_movements WHERE company_id = $1 AND is_delete = false`;
+const getMovementCompany = `SELECT * FROM company_movements WHERE company_id = $1 AND is_delete = false AND active = true`;
 
 const getMovementCompanyById = `SELECT * FROM company_movements WHERE company_id = $1 AND id = $2 AND is_delete = false`;
 
 const isMovementCompanyExist = `SELECT * FROM company_movements WHERE request_id = $1 AND station_id = $2 AND company_id = $3 AND is_delete = false`;
 
 const deleteMovementCompany = `UPDATE company_movements SET is_delete = $1 WHERE id = $2 AND company_id = $3`;
+
+const updateMovementCompany = `UPDATE company_movements SET condition = $1 WHERE id = $2 AND company_id = $3 AND station_id = $4 AND is_delete = false`;
 
 const addCaptureRequest = `INSERT INTO capture_request (
   condition,
@@ -155,11 +156,17 @@ const addCaptureRequest = `INSERT INTO capture_request (
 
 const isCaptureRequestExist = `SELECT * FROM capture_request WHERE request_id = $1 AND station_id = $2 AND company_id = $3 AND is_delete = false`;
 
-  // * Station
+const changeActiveCompanyMovements = `UPDATE company_movements SET active = $1 WHERE request_id = $2 AND company_id = $3 AND station_id = $4`;
+
+const getInterestedRequestsFromStations = `SELECT * FROM station_movements WHERE company_id = $1 AND is_delete = false AND active = true AND is_reject = false`;
+
+const rejectStationInterested = `UPDATE station_movements SET is_reject = $1 WHERE id = $2 AND company_id = $3 `;
+
+// * Station
 
 const addMovementStation = `INSERT INTO station_movements (condition, date, request_id, company_id, station_id) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
 
-const getMovementStation = `SELECT * FROM station_movements WHERE station_id = $1 AND is_delete = false`;
+const getMovementStation = `SELECT * FROM station_movements WHERE station_id = $1 AND is_delete = false AND active = true`;
 
 const getMovementStationById = `SELECT * FROM station_movements WHERE station_id = $1 AND id = $2 AND is_delete = false`;
 
@@ -169,13 +176,19 @@ const updateMovementStation = `UPDATE station_movements SET condition = $1 WHERE
 
 const deleteMovementStation = `UPDATE station_movements SET is_delete = $1 WHERE id = $2 AND station_id = $3`;
 
-const getMovementCompanyForStation = `SELECT * FROM company_movements WHERE station_id = $1 AND is_delete = false`;
+const getMovementCompanyForStation = `SELECT * FROM company_movements WHERE station_id = $1 AND is_delete = false AND active = true AND is_reject = false`;
 
-const updateMovementCompany = `UPDATE company_movements SET condition = $1 WHERE id = $2 AND company_id = $3 AND station_id = $4 AND is_delete = false`;
+const changeActiveStationMovements = `UPDATE station_movements SET active = $1 WHERE request_id = $2 AND company_id = $3 AND station_id = $4`;
+
+const rejectCompanyMovements = `UPDATE company_movements SET is_reject = $1 WHERE id = $2 AND station_id = $3 `;
 
 
 // Profit Info
 const getProfitInfo = `SELECT * FROM earnings_information`;
+
+// Capture Request
+const getAllCaptureRequestCompany = `SELECT * FROM capture_request WHERE company_id = $1 AND is_delete = false`;
+const getAllCaptureRequestStation = `SELECT * FROM capture_request WHERE station_id = $1 AND is_delete = false`;
 
 module.exports = {
   getCompanyByEmail,
@@ -230,7 +243,7 @@ module.exports = {
   updateMovementCompany,
   deleteMovementCompany,
   isMovementCompanyExist,
-  
+
   addMovementStation,
   getMovementStation,
   getMovementStationById,
@@ -239,8 +252,17 @@ module.exports = {
   isMovementStationExist,
 
   getMovementCompanyForStation,
-  
+
   getProfitInfo,
   addCaptureRequest,
   isCaptureRequestExist,
+
+  changeActiveCompanyMovements,
+  changeActiveStationMovements,
+  rejectCompanyMovements,
+
+  getAllCaptureRequestCompany,
+  getAllCaptureRequestStation,
+  getInterestedRequestsFromStations,
+  rejectStationInterested,
 }

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './../../../CSS/Add-Show-request.css'
 import { Link } from 'react-router-dom'
 
 export default function Unauthorized() {
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <>
             <div class="d-flex align-items-center justify-content-center vh-100">

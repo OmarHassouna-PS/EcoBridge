@@ -3,7 +3,7 @@ import './../../../CSS/index.css'
 import { Link } from 'react-router-dom'
 import { Context } from '../../../Context/AuthContext';
 
-import General from './General'
+import LandingPage from './LandingPage'
 import Station from '../../Website/ForStation/Home'
 import Product from '../../Website/ForProduct/Home'
 
@@ -16,6 +16,6 @@ export default function Home() {
         case 'station':
             return <Station />
         default:
-            return <General />
+            return <LandingPage />
     }
 }

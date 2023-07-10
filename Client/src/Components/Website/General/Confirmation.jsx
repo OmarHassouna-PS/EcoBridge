@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './../../../CSS/Add-Show-request.css'
 import { Link } from 'react-router-dom'
 
 export default function Confirmation() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <>
             <main className="container-fluid row justify-content-center align-items-center m-0 p-0">

@@ -11,6 +11,10 @@ import TableModal from '../util/TableModal'
 
 export default function Home() {
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+      
     const { loading: requestLoading, data: requestData, error: requestError } = useFetch('/request');
     const { loading: stationLoading, data: stationData, error: stationError } = useFetch('/station');
 
@@ -242,12 +246,12 @@ export default function Home() {
                                     contamination, make their way into your recycling bin.
                                 </p>
                                 <div className="md-button">
-                                    <a
-                                        href="Pages/Recycle-right.html"
+                                    <Link
+                                        to="/recycle-right"
                                         className="button text-center first-btn"
                                     >
                                         Learn more
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

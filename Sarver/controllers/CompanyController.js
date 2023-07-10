@@ -49,109 +49,6 @@ const addCompany = async (req, res, next) => {
   }
 };
 
-const getCaptureRequest = async (req, res, next) => {
-
-  const movementId = req.params.movementId;
-  const company = req.user;
-
-  const movement = await db.query(queries.getMovementCompanyById, [company.company_id, movementId]);
-
-  if (!movement.rows[0].condition) {
-    return res.status(406).json({ message: 'The request is incomplete!' });
-  }
-
-  const request = await db.query(queries.getRequestByIdToCompany, [movement.rows[0].request_id, company.company_id]);
-  const station = await db.query(queries.getStationById, [movement.rows[0].station_id]);
-
-  if (!movement || !request || !station) return res.status(406).json({ message: "Something went wrong, please try again later" });
-
-  const parsedData = station.rows[0].list_materials_and_prices.map((jsonString) => JSON.parse(jsonString));
-
-  const materialPrice = parsedData.find((item) => item.materialType === request.rows[0].material_type);
-
-  if (!materialPrice) {
-    return res.status(406).json({ message: 'It seems that the station is no longer receiving the material of this request. Please apply to other stations!' });
-  }
-
-  const getProfitInfo = await db.query(queries.getProfitInfo);
-
-  const priceAfterProfitRateDeduction = Number(materialPrice.price) - (getProfitInfo.rows[0].profit_percentage * Number(materialPrice.price));
-
-  res.status(200).json({
-    material_type: request.rows[0].material_type,
-    material_quantity: request.rows[0].quantity,
-    material_price: priceAfterProfitRateDeduction,
-    total_price: priceAfterProfitRateDeduction * Number(request.rows[0].quantity),
-  })
-};
-
-const addCaptureRequest = async (req, res, next) => {
-
-  const { city, delivery_address, delivery_date, delivery_time, Account_number, payment_method, movement_id } = req.body;
-
-  const company = req.user;
-
-  const movement = await db.query(queries.getMovementCompanyById, [company.company_id, movement_id]);
-
-  if (!movement.rows[0].condition)  return res.status(406).json({ message: 'The request is incomplete!' });
-
-  const isCaptureRequestExist = await db.query(queries.isCaptureRequestExist, [movement.rows[0].request_id, movement.rows[0].station_id, company.company_id]);
-
-  if (isCaptureRequestExist.rows.length > 0) return res.status(406).json({ message: 'A capture request has already been submitted on this request!' });
-
-  console.log(isCaptureRequestExist.rows, movement.request_id, movement.station_id, company.company_id)
-
-  const request = await db.query(queries.getRequestByIdToCompany, [movement.rows[0].request_id, company.company_id]);
-  const station = await db.query(queries.getStationById, [movement.rows[0].station_id]);
-
-  if (!movement || !request || !station) return res.status(406).json({ message: "Something went wrong, please try again later" });
-
-  const parsedData = station.rows[0].list_materials_and_prices.map((jsonString) => JSON.parse(jsonString));
-
-  const materialPrice = parsedData.find((item) => item.materialType === request.rows[0].material_type);
-
-  if (!materialPrice) {
-    return res.status(406).json({ message: 'It seems that the station is no longer receiving the material of this request. Please apply to other stations!' });
-  }
-
-  const getProfitInfo = await db.query(queries.getProfitInfo);
-
-  const priceAfterProfitRateDeduction = Number(materialPrice.price) - (getProfitInfo.rows[0].profit_percentage * Number(materialPrice.price));
-
-  const total_price = priceAfterProfitRateDeduction * Number(request.rows[0].quantity);
-
-  const date = new Date(); 
-
-  db.query(queries.addCaptureRequest,
-    [
-      "Underway",
-      date,
-      city,
-      delivery_address,
-      delivery_date,
-      delivery_time,
-      Account_number,
-      payment_method,
-      request.rows[0].material_type,
-      request.rows[0].quantity,
-      priceAfterProfitRateDeduction,
-      total_price,
-      getProfitInfo.rows[0].profit_percentage,
-      movement.rows[0].request_id,
-      company.company_id,
-      movement.rows[0].station_id
-    ],
-    (error, results) => {
-      if (error) {
-        console.log(error)
-        return res.status(400).json(error);
-      }
-      return res.status(200).json({message : 'The capture request has been sent successfully'});
-
-    }
-  );
-}
-
 const getCompanyById = async (req, res) => {
   const id = req.params.id;
   db.query(queries.getCompanyById, [id],
@@ -291,9 +188,6 @@ const deleteCompany = async (req, res) => {
   );
 };
 
-
-
-
 module.exports = {
   addCompany,
   getCompanyById,
@@ -301,7 +195,4 @@ module.exports = {
   updateCompany,
   deleteCompany,
   changePassword,
-  getCaptureRequest,
-  addCaptureRequest,
-
 }

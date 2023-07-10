@@ -18,5 +18,7 @@ router.get("/company_movement_for_station", ProtectionToken, authPage(['station'
 
 router.post("/accept_movement", ProtectionToken, authPage(['station']), Controller.acceptMovement);
 
+router.put("/reject_movement/:id", ProtectionToken, authPage(['station']), Controller.rejectMovement);
+
 
 module.exports = router;

@@ -87,7 +87,7 @@ a {
 /* Start Hero Section */
 
 .hero {
-    background-image: url(./../../public/Images/Hero-img.jpg);
+    background-image: url(./../../public/Images/HeroImage1.jpg);
     border-radius: 20px;
     margin: 10px 10px;
     display: grid;
@@ -142,12 +142,13 @@ a {
 }
 
 .hero-text h1 {
+    margin-bottom: 50px;
     font-weight: bold;
     font-size: 33px;
     line-height: 64px;
     color: var(--White-color);
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     backdrop-filter: blur(5px) brightness(100%);
 }
 

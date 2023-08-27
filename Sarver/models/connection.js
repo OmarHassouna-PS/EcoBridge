@@ -1,5 +1,6 @@
 
 const { Pool } = require("pg");
+const pgp = require("pg-promise")();
 require("dotenv").config();
 
 const dbConfig = {
@@ -11,8 +12,10 @@ const dbConfig = {
 };
 
 const db = new Pool(dbConfig);
+const PGP = pgp(dbConfig);
 
 // Export the pool for database operations
 module.exports = {
-  db
+  db,
+  PGP
 };

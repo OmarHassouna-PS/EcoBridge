@@ -120,3 +120,30 @@ CREATE TABLE capture_request  (
 CREATE TABLE earnings_information  (
    profit_percentage DECIMAL(10, 2) NOT NULL,
 );
+
+CREATE TABLE traffic_company (
+  id SERIAL PRIMARY KEY,
+  date DATE NOT NULL,
+  traffic INTEGER NOT NULL
+)
+
+CREATE TABLE traffic_station (
+  id SERIAL PRIMARY KEY,
+  date DATE NOT NULL,
+  traffic INTEGER NOT NULL
+)
+
+CREATE TABLE traffic_users (
+  id SERIAL PRIMARY KEY,
+  date DATE NOT NULL,
+  traffic INTEGER NOT NULL
+)
+
+CREATE TABLE message (
+  message_id SERIAL PRIMARY KEY,
+  date DATE NOT NULL,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  message TEXT NOT NULL,
+  is_delete BOOLEAN DEFAULT false
+)

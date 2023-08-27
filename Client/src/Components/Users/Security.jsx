@@ -223,7 +223,7 @@ export default function Securely() {
         <>
             <main>
                 <section className="container-portfilio">
-                    <div className="title">
+                    <div className="text-center mt-5">
                         <h1 className="text-first-color fw-bold">
                             Sec<span className="text-second-color">urity</span>
                         </h1>
@@ -339,7 +339,7 @@ export default function Securely() {
                                     <Alert
                                         show={showAlert}
                                         message={'I understand that when I delete my account, it will be final and irreversible, and all my transactions within the site will be deleted except for the records.'}
-                                        title={'The account has been deleted successfully.'}
+                                        title={'Do you understand the next step?'}
                                         buttonMessage={'I understand'} />
                                 </Dialog>
                             </div>

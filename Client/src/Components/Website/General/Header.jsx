@@ -110,7 +110,7 @@ export default function Header() {
                                 </li>
                             </ul>
                             <div className="search-input me-auto">
-                                <span className="form-control-feedback">
+                                {/* <span className="form-control-feedback">
                                     <svg
                                         className="search-icon d-inline"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ export default function Header() {
                                         </g>
                                     </svg>
                                 </span>
-                                <input className="form-control" type="search" placeholder="Search" />
+                                <input className="form-control" type="search" placeholder="Search" /> */}
                             </div>
                             {values.logIn.isLog ?
                                 <div className="dropdown" ref={dropdownRef}>

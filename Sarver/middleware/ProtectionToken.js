@@ -15,7 +15,7 @@ const getUserById = async (userId, query) => {
 async function ProtectionToken(req, res, next) {
     const authHeader = req.headers.authorization;
 
-    // Check if token exist, if exist get
+    // 1) Check if token exist, if exist get
     const token = authHeader && authHeader.split(" ")[1];
     let decodedToken;
 
@@ -23,7 +23,7 @@ async function ProtectionToken(req, res, next) {
         return res.status(401).json({ error: "You must be logged" });
     }
 
-    //  Verify token (no change happens, expired token)
+    //  2)Verify token (no change happens, expired token)
     try {
         const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
         decodedToken = decoded;

@@ -1,10 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import api from '../../../AxiosConfig/contacts';
 
 function GetStarted() {
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);
+
+    const [data, setData] = useState([]);
+
+    async function getGeneralStats() {
+    
+        try {
+          const res = await api.get(`general_stats`);
+
+          setData(res.data);
+
+        } catch (error) {
+          console.error("Error fetching data:", error);
+
+        }
+      }
+
+      useEffect(() => {
+        getGeneralStats()
+      }, []);
+      
     return (
         <main>
         <section className="index-hero">
@@ -12,11 +33,11 @@ function GetStarted() {
                 <span className="text-second-color">
                     <h1>
                         <span className="text-second-color">" </span>
-                        <span className="text-first-color">Recycling</span> is essential for a
+                        <span className="text-first-color">Recycling is essential for a
                         cleaner and more sustainable future. Let's make it a daily habit and
                         work together to build a
-                        <span className="text-first-color">greener world</span>
-                        <span className="text-second-color">"</span>
+                        greener world</span>
+                        <span className="text-second-color"> "</span>
                     </h1>
                 </span>
             </div>
@@ -48,20 +69,19 @@ function GetStarted() {
         <section className="index-achievements">
             <div className="index-achievements-card text-center px-4">
                 <div className="index-achievements-field">
-                    <h3 className="text-first-color fw-bold">40,000+</h3>
+                    <h3 className="text-first-color fw-bold">{data?.countAmountWaste?.totalquantity}+</h3>
                     <h4 className="black-text">
                         kilograms of waste were collected through our site
                     </h4>
                 </div>
                 <div className="index-achievements-field">
-                    <h3 className="text-first-color fw-bold">100,000+</h3>
+                    <h3 className="text-first-color fw-bold">{data?.countAmountWaste?.totalrequests}+</h3>
                     <h4 className="black-text">
-                        people we have helped and made them aware of the importance of waste
-                        recycling
+                        Existing requests on our site
                     </h4>
                 </div>
                 <div className="index-achievements-field">
-                    <h3 className="text-first-color fw-bold">10,000+</h3>
+                    <h3 className="text-first-color fw-bold">{data?.countCaptureRequest?.totalcapturerequest}+</h3>
                     <h4 className="black-text">
                         transactions and orders completed on our website
                     </h4>

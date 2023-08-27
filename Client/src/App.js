@@ -1,5 +1,5 @@
-import React, { Suspense, lazy, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
+import React, { lazy } from 'react'
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import './CSS/App.css'
 
 // General
@@ -8,6 +8,9 @@ import Header from './Components/Website/General/Header';
 import Footer from './Components/Website/General/Footer';
 import NoPage from './Components/Website/General/NoPage';
 import AuthContext from './Context/AuthContext';
+
+import PublicLayout from './Layout/PublicLayout';
+import PrivateLayout from './Layout/PrivateLayout';
 
 
 const Index = lazy(() => import('./Components/Website/General/Index'))
@@ -49,39 +52,170 @@ function App() {
       <AuthContext>
         <Routes>
           <Route path='/' element={<Header />}>
+            
+            <Route path='/signIn' element={
+              <PublicLayout >
+                <SignIn />
+              </PublicLayout>
+
+            } />
+            <Route path='/signUp' element={
+              <PublicLayout >
+                <SignUp />
+              </PublicLayout>
+
+            } />
+
+            <Route path="*" element={
+              <PublicLayout >
+                <NoPage />
+              </PublicLayout>
+            } />
+
             <Route index element={<Index />} />
-            <Route path="*" element={<NoPage />} />
-            <Route path="/loader" element={<Loader />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/achievements' element={<Achievements />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/confirmation' element={<Confirmation />} />
-            <Route path='/recycle-right' element={<RecycleRight />} />
-            <Route path='/view-request/:id' element={<ViewRequest />} />
-            <Route path='/view-station/:id' element={<ViewStation />} />
 
-            <Route path='/home-for-product' element={<HomeForProduct />} />
-            <Route path='/add-request' element={<AddRequest />} />
-            <Route path='/edit-request/:id' element={<AddRequest />} />
-            <Route path='/show-requests' element={<ShowRequests />} />
-            <Route path='/show-stations' element={<ShowStation />} />
-            <Route path='/station-portfolio-for-product' element={<ShowPortfolio />} />
-            <Route path='/send-capture-request/:id' element={<SendCaptureRequest />} />
+            <Route path='/about' element={
+              <PublicLayout >
+                <About />
+              </PublicLayout>
+            } />
 
-            <Route path='/home-for-station' element={<HomeForStation />} />
-            <Route path='/update-price' element={<UpdatePrice />} />
-            <Route path='/product-portfolio-for-station' element={<ProductPortfolioForStation />} />
+            <Route path='/achievements' element={
+              <PublicLayout >
+                <Achievements />
+              </PublicLayout>
+            } />
 
-            <Route path='/company_movements_history' element={<CompanyHistory />} />
-            <Route path='/station_movements_history' element={<StationHistory />} />
+            <Route path='/contact' element={
+              <PublicLayout >
+                <Contact />
+              </PublicLayout>
+
+            } />
+            <Route path='/confirmation' element={
+              <PublicLayout >
+                <Confirmation />
+              </PublicLayout>
+
+            } />
+            <Route path='/recycle-right' element={
+              <PublicLayout >
+                <RecycleRight />
+              </PublicLayout>
+            } />
+
+            <Route path='/view-request/:id' element={
+              <PrivateLayout >
+                <ViewRequest />
+              </PrivateLayout>
+            } />
+
+            <Route path='/view-station/:id' element={
+              <PrivateLayout >
+                <ViewStation />
+              </PrivateLayout>
+            } />
+
+            <Route path='/home-for-product' element={
+              <PrivateLayout >
+                <HomeForProduct />
+              </PrivateLayout>
+            } />
+
+            <Route path='/add-request' element={
+              <PrivateLayout >
+                <AddRequest />
+              </PrivateLayout>
+            } />
+
+            <Route path='/edit-request/:id' element={
+              <PrivateLayout >
+                <AddRequest />
+              </PrivateLayout>
+            } />
+
+            <Route path='/show-requests' element={
+              <PrivateLayout >
+                <ShowRequests />
+              </PrivateLayout>
+            } />
+
+            <Route path='/show-stations' element={
+              <PrivateLayout >
+                <ShowStation />
+              </PrivateLayout>
+            } />
+
+            <Route path='/station-portfolio-for-product' element={
+              <PrivateLayout >
+                <ShowPortfolio />
+              </PrivateLayout>
+            } />
+
+            <Route path='/send-capture-request/:id' element={
+              <PrivateLayout >
+                <SendCaptureRequest />
+              </PrivateLayout>
+            } />
+
+            <Route path='/home-for-station' element={
+              <PrivateLayout >
+                <HomeForStation />
+              </PrivateLayout>
+            } />
+
+            <Route path='/update-price' element={
+              <PrivateLayout >
+                <UpdatePrice />
+              </PrivateLayout>
+            } />
+
+            <Route path='/product-portfolio-for-station' element={
+              <PrivateLayout >
+                <ProductPortfolioForStation />
+              </PrivateLayout>
+            } />
+
+            <Route path='/company_movements_history' element={
+              <PrivateLayout >
+                <CompanyHistory />
+              </PrivateLayout>
+
+            } />
+
+            <Route path='/station_movements_history' element={
+              <PrivateLayout >
+                <StationHistory />
+              </PrivateLayout>
+
+            } />
 
 
-            <Route path='/portfolio' element={<Portfolio />} />
-            <Route path='/password-recovery' element={<PasswordRecovery />} />
-            <Route path="/password-recovery/:token" element={<PasswordRecovery />} />
-            <Route path='/security' element={<Security />} />
-            <Route path='/signIn' element={<SignIn />} />
-            <Route path='/signUp' element={<SignUp />} />
+            <Route path='/portfolio' element={
+              <PrivateLayout >
+                <Portfolio />
+              </PrivateLayout>
+
+            } />
+
+            <Route path='/password-recovery' element={
+              <PrivateLayout >
+                <PasswordRecovery />
+              </PrivateLayout>
+            } />
+
+            <Route path="/password-recovery/:token" element={
+              <PrivateLayout >
+                <PasswordRecovery />
+              </PrivateLayout>
+            } />
+
+            <Route path='/security' element={
+              <PrivateLayout >
+                <Security />
+              </PrivateLayout>
+            } />
+
           </Route>
         </Routes>
         <Footer />

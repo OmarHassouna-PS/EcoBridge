@@ -146,27 +146,16 @@ export default function SignIn() {
             }
         }
         else {
-            try {
-                const res = await api.post(`http://localhost:8000/Login_admin`, {
-                    email: email,
-                    password: password,
-                });
+            
+            setMessageWarning({
+                ...messageWarning,
+                submit: "Please select the type of user",
+            });
 
-                localStorage.setItem("token", res.data.Token);
-                navigate("/dashboard");
-                console.log(res);
-
-            } catch (err) {
-                setMessageWarning({
-                    ...messageWarning,
-                    submit: "Please select the type of user",
-                });
-                console.error(err);
-            }
             values.logIn.setIsLog(false);
         }
     }
-    
+
     return (
         <>
             <main className="main row justify-content-center m-0">
@@ -249,7 +238,7 @@ export default function SignIn() {
                                 </div>
                                 <div className="row p-ms-0">
                                     <div className="col-6 text-start p-0">
-                                        <input
+                                        {/* <input
                                             className="form-check-input"
                                             id="rememberMe"
                                             type="checkbox"
@@ -257,7 +246,7 @@ export default function SignIn() {
                                         />
                                         <label className="text-font link ms-2" htmlFor="rememberMe">
                                             <b>Remember me</b>
-                                        </label>
+                                        </label> */}
                                     </div>
                                     <div className="col-6 text-end p-0">
                                         <Link to={'/password-recovery'} className="text-font link">

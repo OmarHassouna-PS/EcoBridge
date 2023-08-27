@@ -38,7 +38,7 @@ const sendEmail = async (req, res) => {
     const body = resetPasswordBody(user.username, operatingSystem, browserName, 'EcoBridge', urlReset, 'www.EcoBridge.com');
     sendEmailFunction(
         email,
-        'hello',
+        'Reset Password',
         body
     )
 

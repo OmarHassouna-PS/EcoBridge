@@ -342,13 +342,13 @@ export default function Portfolio() {
             <ToastContainer />
             <main>
                 <section className="container-portfilio">
-                    <div className="title">
+                    <div className="text-center mt-5">
                         <h1 className="text-first-color fw-bold">Profile <span className="text-second-color">Personally</span></h1>
                     </div>
                     <section className="container-form">
                         <div className="container-xl px-4 mt-4">
                             <nav className="nav nav-borders">
-                                <Link to={'/product-portfolio'} className="nav-link active ms-0" >Profile</Link>
+                                <Link to={'/portfolio'} className="nav-link active ms-0" >Profile</Link>
                                 <Link to={'/security'} className="nav-link">Security</Link>
                             </nav>
                             <hr className="mt-0 mb-4" />
@@ -558,7 +558,7 @@ export default function Portfolio() {
 
                     </section>
 
-                    <section className="Trans-Eval-info">
+                    {/* <section className="Trans-Eval-info">
 
                         <div className="circles">
 
@@ -650,7 +650,7 @@ export default function Portfolio() {
 
                         </div>
 
-                    </section>
+                    </section> */}
                 </section>
             </main>
         </>

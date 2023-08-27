@@ -13,8 +13,8 @@ export default function Home() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
-      
+    }, []);
+
     const { loading: requestLoading, data: requestData, error: requestError } = useFetch('/request');
     const { loading: stationLoading, data: stationData, error: stationError } = useFetch('/station');
 
@@ -98,7 +98,7 @@ export default function Home() {
 
             let imagesTag = <img src={staticImage} alt="request images" />;
             const list_materials_and_prices = station.list_materials_and_prices?.map((jsonString) => JSON.parse(jsonString));
-            
+
             if (station.avatar_image) {
 
                 const buffer = station.avatar_image?.data;
@@ -119,7 +119,7 @@ export default function Home() {
                     <div class="user-image">
                         {imagesTag}
                     </div>
-                        <h3 class="text-first-color fw-bold">{station.organization_name}</h3>
+                    <h3 class="text-first-color fw-bold">{station.organization_name}</h3>
                     <div class="content">
                         <hr className="line" />
                         <h6 class="text-first-color text-start ps-4">Acceptable materials type :</h6>
@@ -178,11 +178,11 @@ export default function Home() {
                             <span className="text-second-color">
                                 <h1>
                                     <span className="text-second-color">" </span>
-                                    <span className="text-first-color">Recycling</span> is essential for
-                                    a cleaner and more sustainable future. Let's make it a daily habit
-                                    and work together to build a{" "}
-                                    <span className="text-first-color">greener world</span>{" "}
-                                    <span className="text-second-color">"</span>
+                                    <span className="text-first-color">Recycling is essential for a
+                                        cleaner and more sustainable future. Let's make it a daily habit and
+                                        work together to build a
+                                        greener world</span>
+                                    <span className="text-second-color"> "</span>
                                 </h1>
                             </span>
                         </div>

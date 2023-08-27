@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../../CSS/Add-Show-request.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
@@ -153,7 +153,7 @@ export default function SendCaptureRequest() {
     if (error) {
 
     }
-    else if (values.UserInfo?.role != 'company') {
+    else if (values.UserInfo?.role !== 'company') {
         return (
             <Unauthorized />
         )

@@ -77,8 +77,10 @@ a {
 
 .index-hero {
     height: 700px;
-    background-image: url(../../public/Images/Hero-img.jpg);
+    background-image: url(../../public/Images/HeroImage1.jpg);
+    background-repeat: no-repeat;
     border-radius: 20px;
+    background-size: cover;
     margin: 10px 10px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -134,6 +136,7 @@ a {
 }
 
 .index-hero-text h1 {
+    margin-bottom: 50px;
     font-weight: bold;
     font-size: 33px;
     line-height: 64px;

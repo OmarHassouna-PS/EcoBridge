@@ -8,6 +8,17 @@ import api from '../../AxiosConfig/contacts';
 import VerifyToken from '../..//Utils/Api/VerifyToken';
 import { Context } from '../../Context/AuthContext';
 
+
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+function notify(toastMessage, toastType) {
+    toast(toastMessage, {
+        type: toastType
+    })
+};
+
 export default function SignUp() {
 
     const values = useContext(Context);
@@ -95,13 +106,18 @@ export default function SignUp() {
         setCheckInput({ ...checkInput, username: false });
 
         const name = event.target.value;
-        const patternUesrName = /^[a-z0-9]+$/;
+        const patternUesrName = /^[a-zA-Z][a-zA-Z0-9_-]{2,19}$/;
 
         if (name === "") {
             setMessageWarning({ ...messageWarning, username: "This field is required" });
         }
         else if (!patternUesrName.test(name)) {
-            setMessageWarning({ ...messageWarning, username: "The username must not contain a space" });
+            setMessageWarning({
+                ...messageWarning, username: `
+                    Username can contain letters (both uppercase and lowercase), numbers, underscores, and hyphens.
+                    It must start with a letter.
+                    It should be 3 to 20 characters long.
+            ` });
         } else {
             setMessageWarning({ ...messageWarning, username: "" });
             setUser({ ...user, username: name });
@@ -338,48 +354,52 @@ export default function SignUp() {
             checkInput.wasteInfoRange
         ) {
 
-            await sendDataToServer();
-            event.target.reset();
+            await sendDataToServer(event);
         } else {
             setMessageWarning({
                 ...messageWarning,
                 submit:
                     "Please fill in all fields or verify that the input is correct.",
             });
+            notify("Please fill in all fields or verify that the input is correct.",
+                'error')
         }
     }
 
-    async function sendDataToServer() {
+    async function sendDataToServer(event) {
 
         try {
             const res = await api.post(`/${selectedUserType === "company" ? "company" : "station"}`, user);
 
             if (selectedUserType === "station") {
-                setMessageWarning({
-                    ...messageWarning,
-                    submit: "The operation was completed successfully, you must wait for the approval of the administrator now, you will receive an email with the result",
-                });
+                notify("The operation was completed successfully, you must wait for the approval of the administrator now, you will receive an email with the result",
+                    'success')
+
                 setTextTheme('green')
+                event.target.reset();
                 return;
             }
             navigate(path);
             localStorage.setItem("token", res.data.token);
             values.logIn.setIsLog(true);
+            event.target.reset();
         } catch (err) {
             setMessageWarning({
                 ...messageWarning,
                 email: "Email is already exist",
-                submit: "Email is already exist",
             });
+            notify("Email is already exist",
+                'error')
             console.log(err);
         }
     }
 
     return (
         <>
+            <ToastContainer />
             <main className="main row justify-content-center align-items-center me-0 ">
                 <section className="hero-card">
-                    <h1 className="hero-text-card">Sign up for your RcoBrigde account</h1>
+                    <h1 className="hero-text-card">Sign up for your EcoBridge account</h1>
                 </section>
                 <section className="row container-sing-up justify-content-center col-12 p-0">
                     <form onSubmit={handleSubmit} className="row justify-content-center col-12 m-0 p-0">
@@ -582,9 +602,11 @@ export default function SignUp() {
                                         defaultValue={50}
                                         min={0}
                                         max={1000}
-                                        aria-label="Default"
                                         valueLabelDisplay="auto"
                                         color='success'
+                                        aria-label="Temperature"
+                                        step={10}
+                                        marks
                                     />
                                     <p className='text-bold-color'>{user.wasteInfoRange} KG</p>
 
@@ -604,7 +626,7 @@ export default function SignUp() {
                             <b>Log In</b>
                         </Link>
                     </h6>
-                    <span className={`error-Massage text-center`} style={{ color: textTheme, fontSize: '13px' }}>{messageWarning.submit}</span>
+                    <div className={`error-Massage text-center pb-3`} style={{ color: textTheme, fontSize: '13px' }}>{messageWarning.submit}</div>
                 </section>
             </main>
         </>

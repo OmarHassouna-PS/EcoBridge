@@ -24,22 +24,9 @@ export default function AddRequest() {
     };
 
     const [list, setList] = useState();
-    const [profitInfo, setProfitInfo] = useState();
 
     const [loading, setLoading] = useState(false);
 
-    async function getProfitRatio() {
-
-        try {
-
-            const response = await api.get(`/get_profit_ratio/${process.env.REACT_APP_PROFIT_INFO}`);
-
-            setProfitInfo(response.data[0].profit_percentage);
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     async function getStation() {
 
@@ -61,7 +48,6 @@ export default function AddRequest() {
     }
 
     useEffect(() => {
-        getProfitRatio();
         getStation();
     }, [values])
 

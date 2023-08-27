@@ -90,10 +90,13 @@ export default function Home() {
 
                     <section className="hero">
                         <div className="hero-text">
-                            <h1><span className="text-second-color">" </span><span className="text-first-color">Recycling</span> is
-                                essential for a cleaner and more sustainable future. Let's make it a daily habit and work
-                                together to build a <span className="text-first-color">greener world</span> <span
-                                    className="text-second-color">"</span>
+                            <h1 className=''>
+                                <span className="text-second-color">" </span>
+                                <span className="text-first-color">Recycling is essential for a
+                                    cleaner and more sustainable future. Let's make it a daily habit and
+                                    work together to build a
+                                    greener world</span>
+                                <span className="text-second-color"> "</span>
                             </h1>
                         </div>
 
@@ -122,7 +125,7 @@ export default function Home() {
                         </div>
                     </section>
 
-                    <section className="Trans-Eval-info">
+                    {/* <section className="Trans-Eval-info">
 
                         <div className="circles">
 
@@ -214,7 +217,7 @@ export default function Home() {
 
                         </div>
 
-                    </section>
+                    </section> */}
 
                     <section className="recycle-right">
                         <div className="recycle-right-card">

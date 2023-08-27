@@ -29,6 +29,7 @@ export default function ViewPost() {
     const [requestId, setRequestId] = useState(false);
 
     const [listMaterialsAndPrices, setListMaterialsAndPrices] = useState();
+    console.log("🚀 ~ file: ViewStation.jsx:32 ~ ViewPost ~ listMaterialsAndPrices:", listMaterialsAndPrices)
     const [modal, setModle] = useState('')
     const [modalImg, setModalImg] = useState('');
     const [stationImage, setStationImage] = useState();
@@ -52,7 +53,10 @@ export default function ViewPost() {
         try {
             const response = await api.get(`/station/${stationId.id}`);
             setStation(response.data[0]);
-            setListMaterialsAndPrices(response.data[0].list_materials_and_prices?.map((jsonString) => JSON.parse(jsonString)));
+
+            const arrayPrice = response.data[0].list_materials_and_prices?.map((jsonString) => JSON.parse(jsonString));
+            
+            setListMaterialsAndPrices(arrayPrice);
         } catch (error) {
             console.error(error);
         }

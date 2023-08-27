@@ -12,11 +12,11 @@ import { useParams } from 'react-router-dom';
 
 
 export default function AddRequest() {
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   const values = useContext(Context);
   const cardId = useParams('id');
   const fileRef = useRef();
@@ -89,29 +89,29 @@ export default function AddRequest() {
     }
   };
 
-function handleSliderImage(e) {
-  const files = Array.from(e.target.files);
-  setArrayImages((prevArray) => [...files]);
-}
+  function handleSliderImage(e) {
+    const files = Array.from(e.target.files);
+    setArrayImages((prevArray) => [...files]);
+  }
 
-function deleteImage(index) {
-  setArrayImages((prevArray) => {
-    const newArray = [...prevArray];
-    newArray.splice(index, 1);
-    return newArray;
-  });
-}
+  function deleteImage(index) {
+    setArrayImages((prevArray) => {
+      const newArray = [...prevArray];
+      newArray.splice(index, 1);
+      return newArray;
+    });
+  }
 
-function createElements() {
-  return arrayImages.map((image, index) => (
-    <div className="swiper-slide" key={index}>
-      <div className="image">
-        <img src={URL.createObjectURL(image)} alt="image" />
-        <span onClick={() => deleteImage(index)}>&times;</span>
+  function createElements() {
+    return arrayImages.map((image, index) => (
+      <div className="swiper-slide" key={index}>
+        <div className="image">
+          <img src={URL.createObjectURL(image)} alt="image" />
+          <span onClick={() => deleteImage(index)}>&times;</span>
+        </div>
       </div>
-    </div>
-  ));
-}
+    ));
+  }
 
   const handleButtonClick = () => {
     fileRef.current.click();
@@ -126,6 +126,7 @@ function createElements() {
       request.location &&
       request.material_type &&
       request.quantity &&
+      request.quantity > 0 &&
       request.title
     ) {
       setLoading(true);
@@ -180,7 +181,8 @@ function createElements() {
       request.location &&
       request.material_type &&
       request.quantity &&
-      request.title
+      request.quantity < 1 &&
+      request.title 
     ) {
 
       setLoading(true);
@@ -220,7 +222,7 @@ function createElements() {
     }
   }
 
-  if (values.UserInfo?.role != 'company') {
+  if (values.UserInfo?.role !== 'company') {
     return (
       <Unauthorized />
     )
@@ -244,7 +246,7 @@ function createElements() {
         <section className="container-fluid col-12 row justify-content-center my-5 py-4 container-show-request">
           <form onSubmit={isEdit ? handleSubmitEdit : handleSubmitAdd} className="row justify-content-center">
             <p className="col-12 text-start text-font black-color">
-              
+
               {isEdit ? 'Edit the material recycling request form' : 'Request Material Recycling Form.'}
             </p>
             <div className="row gx-3 mb-3">
@@ -372,11 +374,15 @@ function createElements() {
                   name='images'
                   defaultValue={request.images}
                 />
-                {/* <div className="md-button d-flex justify-content-start">
-                  <button className="button text-center first-btn" type={'button'} onClick={handleButtonClick}>
-                    Upload images
-                  </button>
-                </div> */}
+                {isEdit ?
+                  <></>
+                  :
+                  <div className="md-button d-flex justify-content-start">
+                    <button className="button text-center first-btn" type={'button'} onClick={handleButtonClick}>
+                      Upload images
+                    </button>
+                  </div>
+                }
                 <span className="error-Massage" style={{ color: 'red', fontSize: '13px' }}>{messageWarning.images}</span>
                 <div onClick={(e) => handleGallery(e)} className="gallery">
                   <Slider blocks={createElements()} />

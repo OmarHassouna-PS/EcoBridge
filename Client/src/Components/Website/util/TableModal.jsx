@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Modal } from 'react-bootstrap';
 import { useTable } from 'react-table';
-
+import api from '../../../AxiosConfig/contacts';
 
 const App = ({ materialTypeList }) => {
-    const [items, setItems] = useState(materialTypeList);
+    const [items, setItems] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
 
     const columns = useMemo(
@@ -25,6 +25,38 @@ const App = ({ materialTypeList }) => {
         ],
         []
     );
+
+
+    const setMaterialsList = async () => {
+
+        try {
+            const response = await api.get(`/get_profit_ratio/${process.env.REACT_APP_PROFIT_INFO}`);
+
+            const profit_percentage = response.data[0].profit_percentage;
+
+            const materialsList = materialTypeList.map(material => {
+
+                const materialType = material.materialType;
+                const price = material.price;
+                const weightUnit = material.weightUnit;
+
+                return {
+                    materialType: materialType,
+                    price: Number(price) - (profit_percentage * Number(price)),
+                    weightUnit: weightUnit,
+                };
+            });
+
+            setItems(materialsList);
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        setMaterialsList();
+    }, [])
 
     const tableInstance = useTable({ columns, data: items });
 
@@ -49,7 +81,7 @@ const App = ({ materialTypeList }) => {
             <Modal show={isOpen} size='xl' onHide={() => setIsOpen(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title style={{ width: '100%', textAlign: 'center' }}>
-                        React Scrollable Table Modal
+                        List Materials And Prices
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

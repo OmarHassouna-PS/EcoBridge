@@ -13,6 +13,8 @@ const CompanyMovementsRoutes = require('./routes/CompanyMovementsRoutes');
 const StationMovementsRoutes = require('./routes/StationMovementsRoutes');
 const DashBoardRoutes = require('./routes/DashBoardRoutes');
 const CaptureRequestsRoutes = require('./routes/CaptureRequestsRoutes');
+const MessageRouts = require('./routes/MessageRouts');
+const PublicEndpointsRoutes = require('./routes/PublicEndpointsRoutes');
 
 const PORT = process.env.SERVER_PORT;
 
@@ -32,9 +34,11 @@ app.use(CompanyMovementsRoutes);
 app.use(StationMovementsRoutes);
 app.use(DashBoardRoutes);
 app.use(CaptureRequestsRoutes);
+app.use(MessageRouts);
+app.use(PublicEndpointsRoutes);
 
 app.get("/", (req, res) => {
-    res.send("Welcome");
+    res.send("Welcome To EcoBridge");
 });
 
 module.exports = {

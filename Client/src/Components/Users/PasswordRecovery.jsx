@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './../../CSS/Access.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import api from '../../AxiosConfig/contacts';
 import Alert from '../Website/util/Alert';
 import { Context } from '../../../src/Context/AuthContext';

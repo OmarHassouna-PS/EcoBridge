@@ -1,31 +1,75 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../../../CSS/Contact.css'
+import api from './../../../AxiosConfig/contacts'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Contact() {
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
+
+    function notify(toastMessage, toastType) {
+        toast(toastMessage, {
+            type: toastType
+        })
+    };
+
+    const form = useRef();
+
+
+    const sendEmail = async (event) => {
+        event.preventDefault();
+
+        const username = event.target.username.value;
+        const email = event.target.email.value;
+        const message = event.target.message.value;
+
+        const patternEmail = /^[A-z0-9\.]+@[A-z0-9]+\.[A-z]{3,5}$/;
+
+        if (!email || !username || !message) {
+            notify('Please fill all felid!', 'warning');
+            return;
+        }
+
+        if (!patternEmail.test(email)) {
+            notify('Invalid email!', 'warning');
+            return;
+        }
+
+        try {
+            const res = await api.post('message', { username : username, email : email, message : message });
+            console.log(res);
+            event.target.reset();
+            notify('The message was sent successfully, thank you for contacting us', 'success');
+        } catch (error) {
+            notify('Something went wrong, please try again later', 'error');
+            console.log(error);
+        }
+    };
+
     return (
         <>
+            <ToastContainer />
             <main>
                 <section className="contact-container">
-                    <form action="">
+                    <form ref={form} onSubmit={sendEmail}>
                         <div className="main-contact">
                             <h1 className="text-first-color fw-bold">
                                 Contact <span className="text-second-color">Us</span>
                             </h1>
                             <div className="user-name-input">
-                                <label className="text-font text-bold-color label" htmlFor="userName">
-                                    User name
+                                <label className="text-font text-bold-color label" htmlFor="username">
+                                    Name
                                 </label>
                                 <input
                                     className="form-control"
-                                    id="userName"
+                                    id="username"
                                     type="text"
-                                    name="userName"
-                                    placeholder=""
+                                    name="username"
+                                    placeholder="Name"
                                 />
-                                <span className="error-Massage" id="userName" />
+                                <span className="error-Massage" id="username" />
                             </div>
                             <div className="email-input">
                                 <label className="text-font text-bold-color label" htmlFor="email">
@@ -36,21 +80,22 @@ export default function Contact() {
                                     id="email"
                                     type="email"
                                     name="email"
-                                    placeholder=""
+                                    placeholder="email"
                                 />
                                 <span className="error-Massage" id="warningEmail" />
                             </div>
                             <div className="text-arua-input">
                                 <label className="text-font text-bold-color label" htmlFor="password">
-                                    Subject
+                                    Message
                                 </label>
                                 <textarea
                                     className="form-control"
-                                    name="textArea"
+                                    name="message"
                                     id="textArea"
-                                    maxLength={5}
+                                    maxLength={300}
                                     cols={30}
                                     rows={5}
+                                    placeholder="Message"
                                     defaultValue={""}
                                 />
                                 <span className="error-Massage" id="warningTextArea" />

@@ -1,10 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../../CSS/About-Achievements.css'
+import api from '../../../AxiosConfig/contacts';
 
 export default function Achievements() {
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);
+
+      const [data, setData] = useState([]);
+
+      async function getGeneralStats() {
+      
+          try {
+            const res = await api.get(`general_stats`);
+  
+            setData(res.data);
+  
+          } catch (error) {
+            console.error("Error fetching data:", error);
+  
+          }
+        }
+  
+        useEffect(() => {
+          getGeneralStats()
+        }, []);
     return (
         <>
             <main>
@@ -18,7 +38,7 @@ export default function Achievements() {
                     <div className="achievements-card">
                         <div className="achievements-field">
                             <h3 className="text-first-color ">
-                                40,000<span className="text-second-color">+</span>
+                               {data?.countAmountWaste?.totalquantity}<span className="text-second-color">+</span>
                             </h3>
                             <h4 className="black-text">
                                 kilograms of waste were collected through our site
@@ -27,17 +47,16 @@ export default function Achievements() {
                         <hr className="line" />
                         <div className="achievements-field">
                             <h3 className="text-first-color ">
-                                100,000<span className="text-second-color">+</span>
+                                {data?.countAmountWaste?.totalrequests}<span className="text-second-color">+</span>
                             </h3>
                             <h4 className="black-text">
-                                people we have helped and made them aware of the importance of waste
-                                recycling
+                                Existing requests on our site
                             </h4>
                         </div>
                         <hr className="line" />
                         <div className="achievements-field">
                             <h3 className="text-first-color">
-                                10,000<span className="text-second-color">+</span>
+                                {data?.countCaptureRequest?.totalcapturerequest}<span className="text-second-color">+</span>
                             </h3>
                             <h4 className="black-text">
                                 transactions and orders completed on our website

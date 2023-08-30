@@ -11,11 +11,10 @@ import Alert from '../util/Alert';
 
 export default function SendCaptureRequest() {
 
-    
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     function notify(toastMessage, toastType) {
         toast(toastMessage, {
             type: toastType
@@ -124,7 +123,7 @@ export default function SendCaptureRequest() {
                 const res = await api.post(`/capture_request`, captureRequestInfo);
                 notify('The capture request has been sent successfully', 'success');
                 setLoading(false);
-
+                navigate('/company_movements_history')
             } catch (error) {
                 setLoading(false)
                 console.error(error);
@@ -167,7 +166,6 @@ export default function SendCaptureRequest() {
 
     return (
         <>
-            <ToastContainer />
             <Alert show={showAlert} title={'Something wrong'} message={error} buttonMessage={'OK'} handleClick={handleAlert} />
             <main className="container-fluid row justify-content-center align-items-center m-0 p-0">
                 <section className="col-12 hero-card">
@@ -182,13 +180,13 @@ export default function SendCaptureRequest() {
                             <div className="col-lg-6">
                                 <div className="select mb-4">
                                     <label className="text-font text-bold-color label" htmlFor="city">
-                                    <span style={{ color: 'red', fontSize: '13px' }}>*</span>City
+                                        <span style={{ color: 'red', fontSize: '13px' }}>*</span>City
                                     </label>
                                     <input
                                         onChange={(e) =>
                                             setCaptureRequestInfo({ ...captureRequestInfo, city: e.target.value })}
 
-                                        list="brow" id='city' className="form-select form-control"  />
+                                        list="brow" id='city' className="form-select form-control" />
                                     <datalist id="brow">
                                         <option value="Irbid"></option>
                                         <option value="Ajloun"></option>
@@ -208,9 +206,9 @@ export default function SendCaptureRequest() {
                             </div>
                             <div className="col-lg-6 mb-4">
                                 <label className="text-font text-bold-color label" htmlFor="delivery_address">
-                                <span style={{ color: 'red', fontSize: '13px' }}>*</span>Provide the delivery address
+                                    <span style={{ color: 'red', fontSize: '13px' }}>*</span>Provide the delivery address
                                 </label>
-                                <input 
+                                <input
                                     className="form-control"
                                     id="delivery_address"
                                     type="text"
@@ -226,9 +224,9 @@ export default function SendCaptureRequest() {
                         <div className="row gx-3 mb-4">
                             <div className="col-lg-6 mb-3 mb-lg-0">
                                 <label className="text-font text-bold-color label" htmlFor="delivery_date">
-                                <span style={{ color: 'red', fontSize: '13px' }}>*</span>Select the delivery date
+                                    <span style={{ color: 'red', fontSize: '13px' }}>*</span>Select the delivery date
                                 </label>
-                                <input 
+                                <input
                                     className="form-control"
                                     id="delivery_date"
                                     type="date"
@@ -240,9 +238,9 @@ export default function SendCaptureRequest() {
                             </div>
                             <div className="col-lg-6">
                                 <label className="text-font text-bold-color label" htmlFor="delivery_time">
-                                <span style={{ color: 'red', fontSize: '13px' }}>*</span>Indicate the delivery time
+                                    <span style={{ color: 'red', fontSize: '13px' }}>*</span>Indicate the delivery time
                                 </label>
-                                <input 
+                                <input
                                     className="form-control"
                                     id="delivery_time"
                                     type="time"
@@ -258,7 +256,7 @@ export default function SendCaptureRequest() {
                                 <label className="text-font text-bold-color label" htmlFor="Account_number">
                                     <span style={{ color: 'red', fontSize: '13px' }}>*</span>Account number
                                 </label>
-                                <input 
+                                <input
                                     className="form-control"
                                     id="Account_number"
                                     type="number"
@@ -272,10 +270,10 @@ export default function SendCaptureRequest() {
                             </div>
                             <div className="col-lg-6">
                                 <label className="text-font text-bold-color label" htmlFor="payment_method">
-                                <span style={{ color: 'red', fontSize: '13px' }}>*</span>Payment method
+                                    <span style={{ color: 'red', fontSize: '13px' }}>*</span>Payment method
                                 </label>
                                 <select
-                                    
+
                                     id="payment_method"
                                     className="form-select form-control"
                                     onChange={(e) =>

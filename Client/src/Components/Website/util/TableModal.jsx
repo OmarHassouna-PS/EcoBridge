@@ -63,13 +63,13 @@ const App = ({ materialTypeList }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance;
 
     return (
-        <div>
+        <div className='modala'>
             <div
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    zIndex: 1000
+                    zIndex: 1000,
                 }}
             >
                 <div className="md-button Table-modal">
@@ -85,7 +85,7 @@ const App = ({ materialTypeList }) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div id='scrollableDiv' style={{ height: '80vh', overflow: 'auto' }}>
+                    <div id='scrollableDiv' style={{ height: '50vh', overflow: 'auto' }}>
                         <InfiniteScroll
                             dataLength={items.length}
                             hasMore={true}

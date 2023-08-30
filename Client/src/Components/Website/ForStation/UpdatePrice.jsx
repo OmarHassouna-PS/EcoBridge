@@ -12,7 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function AddRequest() {
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
+
+    const goBack = () => {
+        window.history.back();
+      };
+
     const values = useContext(Context);
 
     const [state, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -31,7 +36,7 @@ export default function AddRequest() {
     async function getStation() {
 
         if (!values?.UserInfo?.id) return;
-        
+
         try {
 
             const response = await api.get(`/station/${values.UserInfo.id}`);
@@ -154,10 +159,14 @@ export default function AddRequest() {
                             </div>
                         </div>
 
-                        <div className="md-button row col-sm-3  justify-content-center">
+                        <div className="md-button row  mt-4 justify-content-center gap-4">
 
                             <button type="submit" className="button p-0">
                                 Save
+                            </button>
+
+                            <button type="button" onClick={goBack} className="button p-0">
+                                Cancel
                             </button>
                         </div>
                     </form>

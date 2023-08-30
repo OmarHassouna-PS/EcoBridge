@@ -4,13 +4,17 @@ import Unauthorized from '../General/Unauthorized';
 import ReceivedRequests from './ReceivedRequests';
 import RequestSentHistory from '../General/RequestSentHistory';
 import InterestedRequests from './InterestedRequests'
+import { useLocation } from 'react-router-dom';
 
 function MovementsHistory() {
 
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
-      
+    }, []);
+
     const values = useContext(Context);
     const [choosePage, setChoosePage] = useState('Received requests');
 

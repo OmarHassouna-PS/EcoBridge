@@ -16,6 +16,9 @@ export default function AddRequest() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const goBack = () => {
+    window.history.back();
+  };
 
   const values = useContext(Context);
   const cardId = useParams('id');
@@ -136,7 +139,7 @@ export default function AddRequest() {
           headers: { "Content-Type": "multipart/form-data" }
         });
 
-        notify('The request has been add successfully', 'success');
+        notify('The request has been add successfully, your request is pending for admin approval', 'success');
         setArrayImages([]);
         setRequest({
           material_type: '',
@@ -181,8 +184,8 @@ export default function AddRequest() {
       request.location &&
       request.material_type &&
       request.quantity &&
-      request.quantity < 1 &&
-      request.title 
+      request.quantity > 1 &&
+      request.title
     ) {
 
       setLoading(true);
@@ -392,11 +395,17 @@ export default function AddRequest() {
             <div onClick={() => setModle('none')} className="modal" style={{ display: modal }}>
               <img src={modalImg} className="modal-content" style={{ display: modalImg }} />
             </div>
-            <div className="md-button row col-sm-3 mt-4 justify-content-center">
+            <div className="md-button row  mt-4 justify-content-center gap-4">
 
               <button type="submit" className="button p-0">
                 {isEdit ? "Save" : "Add"}
               </button>
+              {isEdit &&
+
+                <button type="button" onClick={goBack} className="button p-0">
+                  Cancel 
+                </button>
+              }
             </div>
           </form>
           <span className="error-Massage text-center mt-3" style={{ color: 'red', fontSize: '13px' }}>{messageWarning.submit}</span>

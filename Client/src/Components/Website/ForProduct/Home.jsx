@@ -56,36 +56,44 @@ export default function Home() {
             }
 
             return (
-                <div key={card.requests_id} class="swiper-slide requests-card">
-                    <div class="ribbon ribbon-top-left"><span>ID {card.requests_id}</span></div>
-                    <div class="user-image">
+                <div key={card.requests_id} className="swiper-slide requests-card">
+                    <div className="ribbon ribbon-top-left">
+                        <span>ID {card.requests_id}</span>
+                    </div>
+                    <div className="user-image">
                         <SliderPost blocks={imagesTag} />
                     </div>
-                    <div class="content">
-                        <h3 class="text-first-color fw-bold">{card.title}</h3>
-                        <hr className="line" />
-                        <h6 class="text-first-color text-start ps-4">Material type :</h6>
-                        <div className="waste-types justify-content-center">
-                            <p className="waste-type m-0">{card.material_type}</p>
+                    <div className="content">
+                        <h3 className="text-first-color fw-bold">{card.title}</h3>
+                        <hr className="" />
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h6 className="text-first-color text-start ps-4">Material type :</h6>
+                                <p className="text-bold-color">{card.material_type}</p>
+                            </div>
+                            <div className="col-md-6">
+                                <h6 className="text-first-color text-start ps-4">Condition :</h6>
+                                <p className="text-bold-color">{card.condition}</p>
+                            </div>
                         </div>
-                        <h6 class="text-first-color text-start ps-4">Condition :</h6>
-                        <p class="text-bold-color">{card.condition}</p>
-
-                        <h6 class="text-first-color text-start ps-4">Location :</h6>
-                        <p class="text-bold-color">{card.location}</p>
-
-                        <h6 class="text-first-color text-start ps-4">Quantity:</h6>
-                        <p class="text-bold-color">{card.quantity} KG</p>
+                        <hr className="" />
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h6 className="text-first-color text-start ps-4">Location :</h6>
+                                <p className="text-bold-color">{card.location}</p>
+                            </div>
+                            <div className="col-md-6">
+                                <h6 className="text-first-color text-start ps-4">Quantity:</h6>
+                                <p className="text-bold-color">{card.quantity} KG</p>
+                            </div>
+                        </div>
                     </div>
-                    <hr className="line" />
-                    <div class="footerCard">
-                        <div class="hr">
-                        </div>
-                        <div class="md-button mb-4">
-                            <Link to={`/view-request/${card.requests_id}`} class="button mb-3">Show</Link>
+                    <hr className="mt-0" />
+                    <div className="footerCard">
+                        <div className="md-button mb-4">
+                            <Link to={`/view-request/${card.requests_id}`} className="button mb-3">Show</Link>
                         </div>
                     </div>
-
                 </div>
             )
         })
@@ -121,7 +129,7 @@ export default function Home() {
                     </div>
                     <h3 class="text-first-color fw-bold">{station.organization_name}</h3>
                     <div class="content">
-                        <hr className="line" />
+                        <hr className="" />
                         <h6 class="text-first-color text-start ps-4">Acceptable materials type :</h6>
                         <div className="waste-types justify-content-center">
                             {station.waste_info_type?.map((item) => {
@@ -130,24 +138,39 @@ export default function Home() {
                                 )
                             })}
                         </div>
-                        <h6 class="text-first-color text-start ps-4">Condition :</h6>
 
-                        <label className='label-card' style={{ color: station.condition ? "var(--main-color)" : "#f00", borderColor: station.condition ? "var(--main-color)" : "#f00" }}>
-                            {station.condition ? "Available" : "Unavailable"}
-                        </label>
+                        <hr className="" />
+                        <div className="row">
+                            <div className="col-md-6">
 
-                        <h6 class="text-first-color text-start ps-4">business Type :</h6>
-                        <p class="text-bold-color">{station.business_type}</p>
+                                <h6 class="text-first-color text-start ps-4">Condition :</h6>
+                                <label className='label-card' style={{ color: station.condition ? "var(--main-color)" : "#f00", borderColor: station.condition ? "var(--main-color)" : "#f00" }}>
+                                    {station.condition ? "Available" : "Unavailable"}
+                                </label>
+                            </div>
+                            <div className="col-md-6">
 
-                        <h6 class="text-first-color text-start ps-4">address :</h6>
-                        <p class="text-bold-color">{station.address}</p>
+                                <h6 class="text-first-color text-start ps-4">business Type :</h6>
+                                <p class="text-bold-color">{station.business_type}</p>
+                            </div>
+                        </div>
+                        <hr className="" />
 
-                        <h6 class="text-first-color text-start ps-4">Capacity per day :</h6>
-                        <p class="text-bold-color">{station.waste_info_range} KG</p>
+                        <div className="row">
+                            <div className="col-md-6">
+
+                                <h6 class="text-first-color text-start ps-4">address :</h6>
+                                <p class="text-bold-color">{station.address}</p>
+                            </div>
+                            <div className="col-md-6">
+
+                                <h6 class="text-first-color text-start ps-4">Capacity per day :</h6>
+                                <p class="text-bold-color">{station.waste_info_range} KG</p>
+                            </div>
+                        </div>
                     </div>
-                    <hr className="line" />
+                    <hr className="mt-0" />
                     <div class="footerCard">
-                        <div class="hr"></div>
                         <TableModal materialTypeList={list_materials_and_prices} />
                         <div class="md-button mb-4">
                             <Link to={`/view-station/${station.station_id}`} class="button mb-3">Show</Link>
@@ -174,27 +197,29 @@ export default function Home() {
             <main>
                 <section className="container-home">
                     <section className="hero">
-                        <div className="hero-text">
-                            <span className="text-second-color">
-                                <h1>
-                                    <span className="text-second-color">" </span>
-                                    <span className="text-first-color">Recycling is essential for a
-                                        cleaner and more sustainable future. Let's make it a daily habit and
-                                        work together to build a
-                                        greener world</span>
-                                    <span className="text-second-color"> "</span>
-                                </h1>
-                            </span>
-                        </div>
-                        <div className="md-button">
-                            <Link to={'/add-request'} className="button text-center first-btn">
-                                Add a request
-                            </Link>
-                            <Link onClick={scrollToElement}
-                                className="button text-center second-btn"
-                            >
-                                Find a station
-                            </Link>
+                        <div className='background'>
+                            <div className="hero-text color-text-hero">
+                                <span className="">
+                                    <h1>
+                                        <span className="">" </span>
+                                        <span className="">Recycling is essential for a
+                                            cleaner and more sustainable future. Let's make it a daily habit and
+                                            work together to build a
+                                            greener world</span>
+                                        <span className=""> "</span>
+                                    </h1>
+                                </span>
+                            </div>
+                            <div className="md-button">
+                                <Link to={'/add-request'} className="button text-center first-btn">
+                                    Add a request
+                                </Link>
+                                <Link onClick={scrollToElement}
+                                    className="button text-center second-btn"
+                                >
+                                    Find a station
+                                </Link>
+                            </div>
                         </div>
                     </section>
 

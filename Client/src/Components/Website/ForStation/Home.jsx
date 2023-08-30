@@ -16,9 +16,6 @@ export default function Home() {
 
     useEffect(() => {
         handleRequests();
-        console.log(requestLoading
-            , requestData
-            , requestError)
     }, [requestData])
 
     function handleRequests() {
@@ -53,23 +50,43 @@ export default function Home() {
                     </div>
                     <div class="content">
                         <h3 class="text-first-color fw-bold">{card.title}</h3>
-                        <hr className="line" />
-                        <h6 class="text-first-color text-start ps-4">Material type :</h6>
-                        <div className="waste-types justify-content-center">
-                            <p className="waste-type m-0">{card.material_type}</p>
+                        <hr className="" />
+
+                        <div className="row">
+                            <div className="col-md-6">
+
+                                <h6 class="text-first-color text-start ps-4">Material type :</h6>
+                                <div className="waste-types justify-content-center">
+                                    <p className="waste-type m-0">{card.material_type}</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+
+                                <h6 class="text-first-color text-start ps-4">Condition :</h6>
+                                <p class="text-bold-color">{card.condition}</p>
+
+                            </div>
                         </div>
-                        <h6 class="text-first-color text-start ps-4">Condition :</h6>
-                        <p class="text-bold-color">{card.condition}</p>
 
-                        <h6 class="text-first-color text-start ps-4">Location :</h6>
-                        <p class="text-bold-color">{card.location}</p>
+                        <hr className="" />
 
-                        <h6 class="text-first-color text-start ps-4">Quantity:</h6>
-                        <p class="text-bold-color">{card.quantity} KG</p>
+                        <div className="row">
+                            <div className="col-md-6">
+
+                                <h6 class="text-first-color text-start ps-4">Location :</h6>
+                                <p class="text-bold-color">{card.location}</p>
+                            </div>
+                            <div className="col-md-6">
+                                <h6 class="text-first-color text-start ps-4">Quantity:</h6>
+                                <p class="text-bold-color">{card.quantity} KG</p>
+
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="footerCard">
-                        <div class="hr">
-                        </div>
+                        <hr className="mt-0" />
                         <div class="md-button mb-4">
                             <Link to={`/view-request/${card.requests_id}`} class="button mb-3">Show</Link>
                         </div>
@@ -89,21 +106,24 @@ export default function Home() {
                 <section className="container-home">
 
                     <section className="hero">
-                        <div className="hero-text">
-                            <h1 className=''>
-                                <span className="text-second-color">" </span>
-                                <span className="text-first-color">Recycling is essential for a
-                                    cleaner and more sustainable future. Let's make it a daily habit and
-                                    work together to build a
-                                    greener world</span>
-                                <span className="text-second-color"> "</span>
-                            </h1>
-                        </div>
 
-                        <div className="md-button">
-                            <Link to={'/show-requests'} className="button text-center first-btn">Requests list</Link>
-                            <Link to={'/update-price'} className="button text-center second-btn">Update prices</Link>
-                        </div>
+                        <dir className='background color-text-hero'>
+                            <div className="hero-text">
+                                <h1 className=''>
+                                    <span className=""></span>
+                                    <span className="">Recycling is essential for a
+                                        cleaner and more sustainable future. Let's make it a daily habit and
+                                        work together to build a
+                                        greener world</span>
+                                    <span className=""> </span>
+                                </h1>
+                            </div>
+
+                            <div className="md-button">
+                                <Link to={'/show-requests'} className="button text-center first-btn">Requests list</Link>
+                                <Link to={'/update-price'} className="button text-center second-btn">Update prices</Link>
+                            </div>
+                        </dir>
 
                     </section>
 

@@ -80,20 +80,29 @@ a {
     color: orange;
 }
 
+.color-text-hero {
+    color: #efefef;
+}
+
 /* End General */
 
 /* Start Main */
 
 /* Start Hero Section */
-
-.hero {
-    background-image: url(./../../public/Images/HeroImage1.jpg);
+.background {
     border-radius: 20px;
-    margin: 10px 10px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     justify-content: center;
-    height: 700px;
+    height: calc(100vh - 100px);
+    width: 100%;
+    background-color: #0b1e1287;
+}
+
+.hero {
+    background-image: url(./../../public/Images/Hero-img.jpg);
+    border-radius: 20px;
+    margin: 10px 10px;
 }
 
 .hero-text {
@@ -101,13 +110,6 @@ a {
     align-self: flex-end;
 }
 
-.lg-button a {
-    height: 57px;
-    width: 160px;
-    display: block;
-    padding: 6px;
-    background-color: rgba(28, 130, 0, 0.26);
-}
 
 .lg-button a,
 .md-button a:nth-child(2) {
@@ -116,6 +118,15 @@ a {
     font-weight: bold;
     color: var(--White-color);
     transition: background-color 0.4s ease-in-out;
+}
+
+.lg-button a {
+    border: 0px;
+    height: 57px;
+    width: 160px;
+    display: block;
+    padding: 6px;
+    background-color: rgb(28, 130, 0);
 }
 
 .lg-button a:hover,
@@ -146,10 +157,10 @@ a {
     font-weight: bold;
     font-size: 33px;
     line-height: 64px;
-    color: var(--White-color);
+    color: white;
     border-radius: 20px;
     padding: 20px;
-    backdrop-filter: blur(5px) brightness(100%);
+    /* backdrop-filter: blur(5px) brightness(100%); */
 }
 
 .md-button {
@@ -210,22 +221,22 @@ a {
     border: 1px solid var(--main-color);
     width: 175px;
     height: 175px;
-    opacity: .5;
-    transform: scale(.7);
+    /* opacity: .5; */
+    /* transform: scale(.7); */
     object-fit: cover;
 }
 
 .requests-card.show-requests-card .user-image img {
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 .requests-card .content {
-    opacity: .5;
-    transform: scale(0.9);
+    /* opacity: .5; */
+    /* transform: scale(0.9); */
 }
 
 .requests-card.show-requests-card .content {
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 .requests-card .content .hr {

@@ -30,14 +30,12 @@ function GetStarted() {
         <main>
         <section className="index-hero">
             <div className="index-hero-text">
-                <span className="text-second-color">
+                <span className="color-text-hero">
                     <h1>
-                        <span className="text-second-color">" </span>
-                        <span className="text-first-color">Recycling is essential for a
+                        <span className="">Recycling is essential for a
                         cleaner and more sustainable future. Let's make it a daily habit and
                         work together to build a
                         greener world</span>
-                        <span className="text-second-color"> "</span>
                     </h1>
                 </span>
             </div>

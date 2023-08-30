@@ -128,7 +128,6 @@ const getRequestByID = async (req, res) => {
     db.query(queries.getRequestById, [id],
         (error, results) => {
             if (error) {
-                console.log(error)
                 return res.status(400).json(error);
             }
             res.json(results.rows);

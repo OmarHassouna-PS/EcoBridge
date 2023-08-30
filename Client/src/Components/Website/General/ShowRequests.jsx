@@ -13,7 +13,7 @@ import { Context } from '../../../Context/AuthContext';
 export default function ShowRequest() {
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
     const values = useContext(Context);
 
     const { loading, data, error } = useFetch(`/${values.UserInfo.role === 'company' ? 'request' : 'getAllRequests'}`);
@@ -87,23 +87,42 @@ export default function ShowRequest() {
                     <div class="show-image">
                         <SliderPost blocks={imagesSlider} />
                     </div>
-                    <div class="content">
+                    <div class="">
+
                         <h3 class="text-first-color fw-bold">{card.title}</h3>
-                        <hr className="line" />
-                        <h6 class="text-first-color text-start ps-4">Material type :</h6>
-                        <div className="waste-types justify-content-center">
-                            <p className="waste-type m-0">{card.material_type}</p>
+
+                        <hr className="" />
+
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h6 class="text-first-color text-start ps-4">Material type :</h6>
+                                <div className="waste-types justify-content-center">
+                                    <p className="waste-type m-0">{card.material_type}</p>
+                                </div>
+
+                            </div>
+                            <div className="col-md-6">
+                                <h6 class="text-first-color text-start ps-4">Condition :</h6>
+                                <p class="text-bold-color">{card.condition}</p>
+
+                            </div>
                         </div>
-                        <h6 class="text-first-color text-start ps-4">Condition :</h6>
-                        <p class="text-bold-color">{card.condition}</p>
 
-                        <h6 class="text-first-color text-start ps-4">Location :</h6>
-                        <p class="text-bold-color">{card.location}</p>
+                        <hr className="" />
 
-                        <h6 class="text-first-color text-start ps-4">Quantity:</h6>
-                        <p class="text-bold-color">{card.quantity} KG</p>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h6 class="text-first-color text-start ps-4">Location :</h6>
+                                <p class="text-bold-color">{card.location}</p>
+                            </div>
+                            <div className="col-md-6">
+                                <h6 class="text-first-color text-start ps-4">Quantity:</h6>
+                                <p class="text-bold-color">{card.quantity} KG</p>
+                            </div>
+                        </div>
                     </div>
-                    <hr className="line" />
+
+                    <hr className="mt-0" />
                     <div class="footerCard">
                         <div class="hr">
                         </div>

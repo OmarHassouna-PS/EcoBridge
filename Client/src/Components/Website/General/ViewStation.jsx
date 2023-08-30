@@ -29,7 +29,6 @@ export default function ViewPost() {
     const [requestId, setRequestId] = useState(false);
 
     const [listMaterialsAndPrices, setListMaterialsAndPrices] = useState();
-    console.log("🚀 ~ file: ViewStation.jsx:32 ~ ViewPost ~ listMaterialsAndPrices:", listMaterialsAndPrices)
     const [modal, setModle] = useState('')
     const [modalImg, setModalImg] = useState('');
     const [stationImage, setStationImage] = useState();
@@ -65,12 +64,13 @@ export default function ViewPost() {
     async function getCompanyRequest() {
         try {
             const response = await api.get(`/request`);
-            setCompanyRequests(response.data);
+            setCompanyRequests(response.data.filter( item => item.available === true));
         } catch (error) {
             console.error(error);
         }
     }
-
+    
+    console.log("🚀 ~ file: ViewStation.jsx:68 ~ getCompanyRequest ~ response.data:", companyRequests)
     function setImages() {
 
         let imagesTag = <img src={staticImage} alt="station images" />;
@@ -162,7 +162,7 @@ export default function ViewPost() {
                             <p class="main-color text-center info">{station.organization_name}</p>
                         </div>
                     </div>
-                    <hr className="line" />
+                    <hr className="" />
                     <div className="row gx-3 mb-3">
                         <div className="col-12 text-center">
                             <h6 id="organizationName" className="col-12 text-bold-color" style={{ maxWidth: '100%', wordWrap: 'break-word' }}>
@@ -171,6 +171,7 @@ export default function ViewPost() {
                             <p class="main-color text-center info">{station.business_type}</p>
                         </div>
                     </div>
+                    <hr className="" />
                     <div className="row gx-3">
                         <div className="col-md-6">
 
@@ -196,6 +197,7 @@ export default function ViewPost() {
                             </div>
                         </div>
                     </div>
+                    <hr className="" />
                     <div className="row gx-3 mb-3">
                         <div className="col-md-6">
                             <h6 className="text-font text-bold-color">
@@ -218,7 +220,7 @@ export default function ViewPost() {
                         <img src={modalImg} className="modal-content" style={{ display: modalImg }} />
                     </div>
 
-                    <hr className="line" />
+                    <hr className="" />
 
                     <div className="container">
                         <div className="button-container">

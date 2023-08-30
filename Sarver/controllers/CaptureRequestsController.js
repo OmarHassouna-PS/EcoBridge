@@ -101,6 +101,7 @@ const addCaptureRequest = async (req, res, next) => {
 
     await db.query(queries.changeActiveCompanyMovements, [false, movement.rows[0].request_id, company.company_id, movement.rows[0].station_id]);
     await db.query(queries.changeActiveStationMovements, [false, movement.rows[0].request_id, company.company_id, movement.rows[0].station_id]);
+    await db.query(queries.changeAvailableRequest, [false, movement.rows[0].request_id]);
 
 
     const getProfitInfo = await db.query(queries.getProfitInfo);

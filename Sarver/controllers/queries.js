@@ -104,7 +104,7 @@ const checkAdmin = `SELECT * FROM admin WHERE is_delete = false AND email = $1`;
 
 
 // Request
-const getAllRequests = 'SELECT * FROM requests WHERE is_delete = false AND active = true';
+const getAllRequests = 'SELECT * FROM requests WHERE is_delete = false AND active = true AND available = true';
 
 const getRequestById = 'SELECT * FROM requests WHERE requests_id = $1 AND is_delete = false AND active = true';
 
@@ -115,6 +115,8 @@ const getRequestByIdToCompany = 'SELECT * FROM requests WHERE requests_id = $1 A
 const getAllRequestsByCompanyId = 'SELECT * FROM requests WHERE company_id = $1 AND is_delete = false AND active = true';
 
 const deleteRequest = 'UPDATE requests SET is_delete = $1 WHERE requests_id = $2 AND company_id = $3';
+
+const changeAvailableRequest = 'UPDATE requests SET available = $1 WHERE requests_id = $2';
 
 const addRequest = `INSERT INTO requests ( title, material_type, condition, location, organization_name, additional_info, quantity, images, company_id, created_at)
 VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9, $10) RETURNING *`;
@@ -424,6 +426,7 @@ module.exports = {
   getRequestById,
   uploadMaterialsAndPrices,
   getRequestByIdAny,
+  changeAvailableRequest,
 
   // Movements Company
   addMovementCompany,

@@ -11,11 +11,12 @@ import Alert from '../util/Alert';
 import staticImage from './../../../Images/static.jpg'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NoPage from './../General/NoPage'
 
 export default function ViewPost() {
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
     function notify(toastMessage, toastType) {
         toast(toastMessage, {
             type: toastType
@@ -23,6 +24,7 @@ export default function ViewPost() {
     };
 
     const [request, setRequest] = useState();
+    console.log("🚀 ~ file: ViewRequest?.jsx:27 ~ ViewPost ~ request:", request)
     const values = useContext(Context);
     const navigate = useNavigate();
 
@@ -41,14 +43,13 @@ export default function ViewPost() {
             setModalImg(event.target.src);
         }
     };
-
     async function getRequest() {
         try {
             const response = await api.get(`/${values.UserInfo.role === 'company' ? 'request' : 'getRequestByID'}/${requestId.id}`);
             setRequest(response.data[0]);
 
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     }
 
@@ -102,9 +103,9 @@ export default function ViewPost() {
     }
 
     async function handelInterestedStation() {
-  
+
         try {
-            const resMovement = await api.post(`/station_movement`, { request_id: request.requests_id, company_id: request.company_id });
+            const resMovement = await api.post(`/station_movement`, { request_id: request?.requests_id, company_id: request?.company_id });
 
             notify('Your interest has been sent successfully', 'success');
         } catch (error) {
@@ -129,8 +130,12 @@ export default function ViewPost() {
         return <Unauthorized />
     }
 
-    if (!request || loading) {
+    if (loading) {
         return <Loader />
+    }
+
+    if (!request && loading) {
+        return <NoPage />
     }
 
     return (
@@ -148,18 +153,29 @@ export default function ViewPost() {
                         </div>
 
                         <div className="col-12 text-center mt-3">
-                            <p class="main-color text-center info">{request.organization_name}</p>
+                            <p class="main-color text-center info">{request?.organization_name}</p>
                         </div>
                     </div>
-                    <hr className="line" />
-                    <div className="row gx-3 mb-3">
-                        <div className="col-12 text-center">
+                    <hr className="" />
+
+                    <div className="row">
+                        <div className="col-md-6">
+
                             <h6 id="organizationName" className="col-12 text-bold-color" style={{ maxWidth: '100%', wordWrap: 'break-word' }}>
                                 Title :
                             </h6>
-                            <p class="main-color text-center info">{request.title}</p>
+                            <p class="main-color text-center info">{request?.title}</p>
+                        </div>
+                        <div className="col-md-6">
+                            <h6 id="organizationName" className="col-12 text-bold-color" style={{ maxWidth: '100%', wordWrap: 'break-word' }}>
+                                ID :
+                            </h6>
+                            <p class="main-color text-center info">{request?.requests_id}</p>
+
                         </div>
                     </div>
+
+                    <hr className="" />
                     <div className="row gx-3">
                         <div className="col-md-6">
 
@@ -169,7 +185,7 @@ export default function ViewPost() {
                                 </h6>
                                 <div className="waste-types justify-content-center about-content">
 
-                                    <p className="waste-type" data-aos="zoom-in-down">{request.material_type}</p>
+                                    <p className="waste-type" data-aos="zoom-in-down">{request?.material_type}</p>
 
                                 </div>
                             </div>
@@ -179,15 +195,16 @@ export default function ViewPost() {
                             <h6 className="text-font text-bold-color">
                                 Condition :
                             </h6>
-                            <p class="main-color text-center info">{request.condition}</p>
+                            <p class="main-color text-center info">{request?.condition}</p>
                         </div>
                     </div>
+                    <hr className="" />
                     <div className="row gx-3 mb-3">
                         <div className="col-md-6">
                             <h6 className="text-font text-bold-color">
                                 Location :
                             </h6>
-                            <p class="main-color text-center info">{request.location}</p>
+                            <p class="main-color text-center info">{request?.location}</p>
                         </div>
                         <div className="col-md-6">
                             <h6
@@ -197,22 +214,24 @@ export default function ViewPost() {
                             >
                                 Quantity - KG :
                             </h6>
-                            <p class="main-color text-center info">{request.quantity}</p>
+                            <p class="main-color text-center info">{request?.quantity}</p>
                         </div>
                     </div>
+                    <hr className="" />
+
                     <div className="row gx-3 mb-3">
                         <div className="col-12 ">
                             <h6 id="additionalInformation" className="text-font text-bold-color">
                                 Additional information :
                             </h6>
-                            <p class="main-color text-center info" style={{ maxWidth: '100%', wordWrap: 'break-word' }}>{request.additional_info}</p>
+                            <p class="main-color text-center info" style={{ maxWidth: '100%', wordWrap: 'break-word' }}>{request?.additional_info}</p>
                         </div>
                     </div>
                     <div onClick={() => setModle('none')} className="modal" style={{ display: modal }}>
                         <img src={modalImg} className="modal-content" style={{ display: modalImg }} />
                     </div>
 
-                    <hr className="line" />
+                    <hr className="" />
 
                     {values.UserInfo.role === 'company' ?
 
@@ -229,15 +248,32 @@ export default function ViewPost() {
                             </div>
                         </div>
                         :
-                        <div className="container">
-                            <div className="button-container">
-                                <div className="md-button">
-                                    <button onClick={handelInterestedStation} className="button p-0">
-                                        Interested
-                                    </button>
+                        <>
+                            {request?.available ?
+                                <div className="container">
+                                    <div className="button-container">
+                                        <div className="md-button">
+                                            <button onClick={handelInterestedStation} className="button p-0">
+                                                Interested
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+
+                                :
+                                <div className="container">
+                                    <div className="button-container">
+                                        <div className="md-button">
+                                            <h4 className='text-font text-bold-color'>Unavailable</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </>
+                    }
+                    {values.UserInfo.role === 'company' && !request?.available && 
+                    
+                    <div className='text-center mt-3 text-font main-color'>Request sent</div>
                     }
                 </section>
             </main>

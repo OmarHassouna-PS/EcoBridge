@@ -48,7 +48,7 @@ The project follows a client-server architecture:
 
 ---
 
-##  [Figma](https://www.figma.com/file/ko04WMvxFzxvjBIMMEPKKw/Untitled?node-id=106%3A1330&t=vmjOPeK0byEuSSpb-1)
+##  [Figma](https://www.figma.com/file/p7mtvfvmEBPY2s6ROiZInf/EcoBridge?type=design&node-id=0-1&mode=design&t=qKSGFys2EFJWghwF-0)
 
 ## [Trello](https://trello.com/w/ecobridge2/home)
 

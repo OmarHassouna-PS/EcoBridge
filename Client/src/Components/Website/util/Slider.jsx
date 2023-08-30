@@ -50,11 +50,10 @@ export default function Slider({ blocks }) {
                 slidesPerView={perView}
                 grabCursor={true}
                 spaceBetween={30}
-                centeredSlides={true}
-                // autoplay={{
-                //     delay: 5500,
-                //     disableOnInteraction: false,
-                // }}
+                autoplay={{
+                    delay: 10000,
+                    disableOnInteraction: false,
+                }}
                 pagination={{
                     clickable: true,
 

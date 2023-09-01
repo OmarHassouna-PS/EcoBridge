@@ -106,7 +106,7 @@ export default function Portfolio() {
 
     function checkUsername(name) {
 
-        const patternUesrName = /^[a-zA-Z0-9]+$/;
+        const patternUesrName = /^[a-zA-Z][a-zA-Z0-9_-]{2,19}$/;
 
         if (name === "") {
             return false;
